@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  Gallery.m
 //  HobbyPlayboy
 //
 //  Created by Kunliang Wu on 16/7/18.
 //  Copyright © 2018 Kunliang Wu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Gallery.h"
 
-@interface ViewController : UIViewController
-
+@implementation Gallery
 
 @end
-

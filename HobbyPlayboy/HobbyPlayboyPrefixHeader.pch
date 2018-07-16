@@ -1,0 +1,17 @@
+//
+//  HobbyPlayboyPrefixHeader.pch
+//  HobbyPlayboy
+//
+//  Created by Kunliang Wu on 16/7/18.
+//  Copyright © 2018 Kunliang Wu. All rights reserved.
+//
+
+#ifndef HobbyPlayboyPrefixHeader_pch
+#define HobbyPlayboyPrefixHeader_pch
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#import "NSObject+Utils.h"
+
+#endif /* HobbyPlayboyPrefixHeader_pch */

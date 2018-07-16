@@ -1,0 +1,16 @@
+PODS:
+  - hpple (0.2.0)
+
+DEPENDENCIES:
+  - hpple (~> 0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - hpple
+
+SPEC CHECKSUMS:
+  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+
+PODFILE CHECKSUM: 6f65a1737031bd9b3fccd1216a77094b0beb7514
+
+COCOAPODS: 1.5.3

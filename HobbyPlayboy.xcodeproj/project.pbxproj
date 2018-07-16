@@ -8,13 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		471BF8CC20FC281500CB4376 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8CB20FC281500CB4376 /* AppDelegate.m */; };
-		471BF8CF20FC281500CB4376 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8CE20FC281500CB4376 /* ViewController.m */; };
 		471BF8D220FC281500CB4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471BF8D020FC281500CB4376 /* Main.storyboard */; };
 		471BF8D420FC281600CB4376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 471BF8D320FC281600CB4376 /* Assets.xcassets */; };
 		471BF8D720FC281600CB4376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471BF8D520FC281600CB4376 /* LaunchScreen.storyboard */; };
 		471BF8DA20FC281600CB4376 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8D920FC281600CB4376 /* main.m */; };
 		471BF8E420FC281600CB4376 /* HobbyPlayboyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8E320FC281600CB4376 /* HobbyPlayboyTests.m */; };
 		471BF8EF20FC281600CB4376 /* HobbyPlayboyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8EE20FC281600CB4376 /* HobbyPlayboyUITests.m */; };
+		471BF8FF20FC461A00CB4376 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8FE20FC461A00CB4376 /* MainTabBarController.m */; };
+		471BF90520FC46EE00CB4376 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF90420FC46EE00CB4376 /* SettingViewController.m */; };
+		471BF90820FC470000CB4376 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF90720FC470000CB4376 /* FavViewController.m */; };
+		471BF90B20FC470900CB4376 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF90A20FC470900CB4376 /* HomeViewController.m */; };
+		471BF91120FC571F00CB4376 /* NSObject+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF91020FC571F00CB4376 /* NSObject+Utils.m */; };
+		471BF91720FC601300CB4376 /* HtmlContentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF91620FC601300CB4376 /* HtmlContentParser.m */; };
+		471BF91B20FC627100CB4376 /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF91A20FC627100CB4376 /* Gallery.m */; };
+		9502DDD69083989F0D839F20 /* libPods-HobbyPlayboyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */; };
+		EA44C64433FF015ECCE8B465 /* libPods-HobbyPlayboy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */; };
+		EB7211819CEE2156F247D79B /* libPods-HobbyPlayboyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05621A11D058CA2D5854C25F /* Pods-HobbyPlayboy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HobbyPlayboy.release.xcconfig"; path = "Pods/Target Support Files/Pods-HobbyPlayboy/Pods-HobbyPlayboy.release.xcconfig"; sourceTree = "<group>"; };
+		0C649945D8BE1C08AAB87D66 /* Pods-HobbyPlayboyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HobbyPlayboyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HobbyPlayboyTests/Pods-HobbyPlayboyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1CE8001F6175261A444CC81F /* Pods-HobbyPlayboy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HobbyPlayboy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HobbyPlayboy/Pods-HobbyPlayboy.debug.xcconfig"; sourceTree = "<group>"; };
+		2BB4E176B4EAEC9D2A450D26 /* Pods-HobbyPlayboyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HobbyPlayboyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HobbyPlayboyUITests/Pods-HobbyPlayboyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		471BF8C720FC281500CB4376 /* HobbyPlayboy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HobbyPlayboy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		471BF8CA20FC281500CB4376 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		471BF8CB20FC281500CB4376 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		471BF8CD20FC281500CB4376 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		471BF8CE20FC281500CB4376 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		471BF8D120FC281500CB4376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		471BF8D320FC281600CB4376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		471BF8D620FC281600CB4376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +62,26 @@
 		471BF8EA20FC281600CB4376 /* HobbyPlayboyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HobbyPlayboyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		471BF8EE20FC281600CB4376 /* HobbyPlayboyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HobbyPlayboyUITests.m; sourceTree = "<group>"; };
 		471BF8F020FC281600CB4376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		471BF8FD20FC461A00CB4376 /* MainTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		471BF8FE20FC461A00CB4376 /* MainTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		471BF90320FC46EE00CB4376 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		471BF90420FC46EE00CB4376 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		471BF90620FC470000CB4376 /* FavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
+		471BF90720FC470000CB4376 /* FavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
+		471BF90920FC470900CB4376 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		471BF90A20FC470900CB4376 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		471BF90E20FC4E5200CB4376 /* HobbyPlayboyPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HobbyPlayboyPrefixHeader.pch; sourceTree = "<group>"; };
+		471BF90F20FC571F00CB4376 /* NSObject+Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Utils.h"; sourceTree = "<group>"; };
+		471BF91020FC571F00CB4376 /* NSObject+Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Utils.m"; sourceTree = "<group>"; };
+		471BF91520FC601300CB4376 /* HtmlContentParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HtmlContentParser.h; sourceTree = "<group>"; };
+		471BF91620FC601300CB4376 /* HtmlContentParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlContentParser.m; sourceTree = "<group>"; };
+		471BF91920FC627100CB4376 /* Gallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
+		471BF91A20FC627100CB4376 /* Gallery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
+		4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FABE761F357FD31774D4B28 /* Pods-HobbyPlayboyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HobbyPlayboyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HobbyPlayboyUITests/Pods-HobbyPlayboyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7C0D410D6F6E4FF73086908E /* Pods-HobbyPlayboyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HobbyPlayboyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HobbyPlayboyTests/Pods-HobbyPlayboyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA44C64433FF015ECCE8B465 /* libPods-HobbyPlayboy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9502DDD69083989F0D839F20 /* libPods-HobbyPlayboyTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +105,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB7211819CEE2156F247D79B /* libPods-HobbyPlayboyUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		133C77FFC1517FD0CD3090AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CE8001F6175261A444CC81F /* Pods-HobbyPlayboy.debug.xcconfig */,
+				05621A11D058CA2D5854C25F /* Pods-HobbyPlayboy.release.xcconfig */,
+				0C649945D8BE1C08AAB87D66 /* Pods-HobbyPlayboyTests.debug.xcconfig */,
+				7C0D410D6F6E4FF73086908E /* Pods-HobbyPlayboyTests.release.xcconfig */,
+				5FABE761F357FD31774D4B28 /* Pods-HobbyPlayboyUITests.debug.xcconfig */,
+				2BB4E176B4EAEC9D2A450D26 /* Pods-HobbyPlayboyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		471BF8BE20FC281500CB4376 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +132,8 @@
 				471BF8E220FC281600CB4376 /* HobbyPlayboyTests */,
 				471BF8ED20FC281600CB4376 /* HobbyPlayboyUITests */,
 				471BF8C820FC281500CB4376 /* Products */,
+				133C77FFC1517FD0CD3090AB /* Pods */,
+				6CD284F3A5EB379B93C18906 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +150,14 @@
 		471BF8C920FC281500CB4376 /* HobbyPlayboy */ = {
 			isa = PBXGroup;
 			children = (
+				471BF91820FC622500CB4376 /* Model */,
+				471BF91420FC5FAB00CB4376 /* Manager */,
+				471BF91320FC5EAB00CB4376 /* DataSource */,
+				471BF91220FC5E3600CB4376 /* ViewController */,
+				471BF90D20FC477F00CB4376 /* Config */,
+				471BF90C20FC476F00CB4376 /* Category */,
 				471BF8CA20FC281500CB4376 /* AppDelegate.h */,
 				471BF8CB20FC281500CB4376 /* AppDelegate.m */,
-				471BF8CD20FC281500CB4376 /* ViewController.h */,
-				471BF8CE20FC281500CB4376 /* ViewController.m */,
 				471BF8D020FC281500CB4376 /* Main.storyboard */,
 				471BF8D320FC281600CB4376 /* Assets.xcassets */,
 				471BF8D520FC281600CB4376 /* LaunchScreen.storyboard */,
@@ -132,6 +185,73 @@
 			path = HobbyPlayboyUITests;
 			sourceTree = "<group>";
 		};
+		471BF90C20FC476F00CB4376 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				471BF90F20FC571F00CB4376 /* NSObject+Utils.h */,
+				471BF91020FC571F00CB4376 /* NSObject+Utils.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		471BF90D20FC477F00CB4376 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				471BF90E20FC4E5200CB4376 /* HobbyPlayboyPrefixHeader.pch */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		471BF91220FC5E3600CB4376 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				471BF90320FC46EE00CB4376 /* SettingViewController.h */,
+				471BF90420FC46EE00CB4376 /* SettingViewController.m */,
+				471BF90620FC470000CB4376 /* FavViewController.h */,
+				471BF90720FC470000CB4376 /* FavViewController.m */,
+				471BF90920FC470900CB4376 /* HomeViewController.h */,
+				471BF90A20FC470900CB4376 /* HomeViewController.m */,
+				471BF8FD20FC461A00CB4376 /* MainTabBarController.h */,
+				471BF8FE20FC461A00CB4376 /* MainTabBarController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		471BF91320FC5EAB00CB4376 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
+		471BF91420FC5FAB00CB4376 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				471BF91520FC601300CB4376 /* HtmlContentParser.h */,
+				471BF91620FC601300CB4376 /* HtmlContentParser.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		471BF91820FC622500CB4376 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				471BF91920FC627100CB4376 /* Gallery.h */,
+				471BF91A20FC627100CB4376 /* Gallery.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6CD284F3A5EB379B93C18906 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */,
+				5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */,
+				4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +259,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 471BF8F320FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboy" */;
 			buildPhases = (
+				D8D26F274E8B16C18C210920 /* [CP] Check Pods Manifest.lock */,
 				471BF8C320FC281500CB4376 /* Sources */,
 				471BF8C420FC281500CB4376 /* Frameworks */,
 				471BF8C520FC281500CB4376 /* Resources */,
@@ -156,6 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 471BF8F620FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboyTests" */;
 			buildPhases = (
+				073B29C194E407D4A31F42A4 /* [CP] Check Pods Manifest.lock */,
 				471BF8DB20FC281600CB4376 /* Sources */,
 				471BF8DC20FC281600CB4376 /* Frameworks */,
 				471BF8DD20FC281600CB4376 /* Resources */,
@@ -174,6 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 471BF8F920FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboyUITests" */;
 			buildPhases = (
+				BC5F96D61091FF682557EE0B /* [CP] Check Pods Manifest.lock */,
 				471BF8E620FC281600CB4376 /* Sources */,
 				471BF8E720FC281600CB4376 /* Frameworks */,
 				471BF8E820FC281600CB4376 /* Resources */,
@@ -257,14 +380,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		073B29C194E407D4A31F42A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HobbyPlayboyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC5F96D61091FF682557EE0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HobbyPlayboyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8D26F274E8B16C18C210920 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HobbyPlayboy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		471BF8C320FC281500CB4376 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				471BF8CF20FC281500CB4376 /* ViewController.m in Sources */,
 				471BF8DA20FC281600CB4376 /* main.m in Sources */,
+				471BF90820FC470000CB4376 /* FavViewController.m in Sources */,
+				471BF8FF20FC461A00CB4376 /* MainTabBarController.m in Sources */,
+				471BF91720FC601300CB4376 /* HtmlContentParser.m in Sources */,
 				471BF8CC20FC281500CB4376 /* AppDelegate.m in Sources */,
+				471BF90B20FC470900CB4376 /* HomeViewController.m in Sources */,
+				471BF90520FC46EE00CB4376 /* SettingViewController.m in Sources */,
+				471BF91120FC571F00CB4376 /* NSObject+Utils.m in Sources */,
+				471BF91B20FC627100CB4376 /* Gallery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +546,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HobbyPlayboyPrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -416,6 +604,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HobbyPlayboyPrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -431,10 +621,12 @@
 		};
 		471BF8F420FC281600CB4376 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CE8001F6175261A444CC81F /* Pods-HobbyPlayboy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 294WE6SVDR;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HobbyPlayboy/HobbyPlayboyPrefixHeader.pch";
 				INFOPLIST_FILE = HobbyPlayboy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -448,10 +640,12 @@
 		};
 		471BF8F520FC281600CB4376 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05621A11D058CA2D5854C25F /* Pods-HobbyPlayboy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 294WE6SVDR;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HobbyPlayboy/HobbyPlayboyPrefixHeader.pch";
 				INFOPLIST_FILE = HobbyPlayboy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,6 +659,7 @@
 		};
 		471BF8F720FC281600CB4376 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C649945D8BE1C08AAB87D66 /* Pods-HobbyPlayboyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -484,6 +679,7 @@
 		};
 		471BF8F820FC281600CB4376 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C0D410D6F6E4FF73086908E /* Pods-HobbyPlayboyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -503,6 +699,7 @@
 		};
 		471BF8FA20FC281600CB4376 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FABE761F357FD31774D4B28 /* Pods-HobbyPlayboyUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KN6448CP6C;
@@ -521,6 +718,7 @@
 		};
 		471BF8FB20FC281600CB4376 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BB4E176B4EAEC9D2A450D26 /* Pods-HobbyPlayboyUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KN6448CP6C;
