@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		471BF8CC20FC281500CB4376 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8CB20FC281500CB4376 /* AppDelegate.m */; };
+		471BF8CF20FC281500CB4376 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8CE20FC281500CB4376 /* ViewController.m */; };
+		471BF8D220FC281500CB4376 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471BF8D020FC281500CB4376 /* Main.storyboard */; };
+		471BF8D420FC281600CB4376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 471BF8D320FC281600CB4376 /* Assets.xcassets */; };
+		471BF8D720FC281600CB4376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471BF8D520FC281600CB4376 /* LaunchScreen.storyboard */; };
+		471BF8DA20FC281600CB4376 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8D920FC281600CB4376 /* main.m */; };
+		471BF8E420FC281600CB4376 /* HobbyPlayboyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8E320FC281600CB4376 /* HobbyPlayboyTests.m */; };
+		471BF8EF20FC281600CB4376 /* HobbyPlayboyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF8EE20FC281600CB4376 /* HobbyPlayboyUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		471BF8E020FC281600CB4376 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 471BF8BF20FC281500CB4376 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 471BF8C620FC281500CB4376;
+			remoteInfo = HobbyPlayboy;
+		};
+		471BF8EB20FC281600CB4376 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 471BF8BF20FC281500CB4376 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 471BF8C620FC281500CB4376;
+			remoteInfo = HobbyPlayboy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		471BF8C720FC281500CB4376 /* HobbyPlayboy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HobbyPlayboy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		471BF8CA20FC281500CB4376 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		471BF8CB20FC281500CB4376 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		471BF8CD20FC281500CB4376 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		471BF8CE20FC281500CB4376 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		471BF8D120FC281500CB4376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		471BF8D320FC281600CB4376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		471BF8D620FC281600CB4376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		471BF8D820FC281600CB4376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		471BF8D920FC281600CB4376 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		471BF8DF20FC281600CB4376 /* HobbyPlayboyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HobbyPlayboyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		471BF8E320FC281600CB4376 /* HobbyPlayboyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HobbyPlayboyTests.m; sourceTree = "<group>"; };
+		471BF8E520FC281600CB4376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		471BF8EA20FC281600CB4376 /* HobbyPlayboyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HobbyPlayboyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		471BF8EE20FC281600CB4376 /* HobbyPlayboyUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HobbyPlayboyUITests.m; sourceTree = "<group>"; };
+		471BF8F020FC281600CB4376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		471BF8C420FC281500CB4376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471BF8DC20FC281600CB4376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471BF8E720FC281600CB4376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		471BF8BE20FC281500CB4376 = {
+			isa = PBXGroup;
+			children = (
+				471BF8C920FC281500CB4376 /* HobbyPlayboy */,
+				471BF8E220FC281600CB4376 /* HobbyPlayboyTests */,
+				471BF8ED20FC281600CB4376 /* HobbyPlayboyUITests */,
+				471BF8C820FC281500CB4376 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		471BF8C820FC281500CB4376 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				471BF8C720FC281500CB4376 /* HobbyPlayboy.app */,
+				471BF8DF20FC281600CB4376 /* HobbyPlayboyTests.xctest */,
+				471BF8EA20FC281600CB4376 /* HobbyPlayboyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		471BF8C920FC281500CB4376 /* HobbyPlayboy */ = {
+			isa = PBXGroup;
+			children = (
+				471BF8CA20FC281500CB4376 /* AppDelegate.h */,
+				471BF8CB20FC281500CB4376 /* AppDelegate.m */,
+				471BF8CD20FC281500CB4376 /* ViewController.h */,
+				471BF8CE20FC281500CB4376 /* ViewController.m */,
+				471BF8D020FC281500CB4376 /* Main.storyboard */,
+				471BF8D320FC281600CB4376 /* Assets.xcassets */,
+				471BF8D520FC281600CB4376 /* LaunchScreen.storyboard */,
+				471BF8D820FC281600CB4376 /* Info.plist */,
+				471BF8D920FC281600CB4376 /* main.m */,
+			);
+			path = HobbyPlayboy;
+			sourceTree = "<group>";
+		};
+		471BF8E220FC281600CB4376 /* HobbyPlayboyTests */ = {
+			isa = PBXGroup;
+			children = (
+				471BF8E320FC281600CB4376 /* HobbyPlayboyTests.m */,
+				471BF8E520FC281600CB4376 /* Info.plist */,
+			);
+			path = HobbyPlayboyTests;
+			sourceTree = "<group>";
+		};
+		471BF8ED20FC281600CB4376 /* HobbyPlayboyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				471BF8EE20FC281600CB4376 /* HobbyPlayboyUITests.m */,
+				471BF8F020FC281600CB4376 /* Info.plist */,
+			);
+			path = HobbyPlayboyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		471BF8C620FC281500CB4376 /* HobbyPlayboy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 471BF8F320FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboy" */;
+			buildPhases = (
+				471BF8C320FC281500CB4376 /* Sources */,
+				471BF8C420FC281500CB4376 /* Frameworks */,
+				471BF8C520FC281500CB4376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HobbyPlayboy;
+			productName = HobbyPlayboy;
+			productReference = 471BF8C720FC281500CB4376 /* HobbyPlayboy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		471BF8DE20FC281600CB4376 /* HobbyPlayboyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 471BF8F620FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboyTests" */;
+			buildPhases = (
+				471BF8DB20FC281600CB4376 /* Sources */,
+				471BF8DC20FC281600CB4376 /* Frameworks */,
+				471BF8DD20FC281600CB4376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				471BF8E120FC281600CB4376 /* PBXTargetDependency */,
+			);
+			name = HobbyPlayboyTests;
+			productName = HobbyPlayboyTests;
+			productReference = 471BF8DF20FC281600CB4376 /* HobbyPlayboyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		471BF8E920FC281600CB4376 /* HobbyPlayboyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 471BF8F920FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboyUITests" */;
+			buildPhases = (
+				471BF8E620FC281600CB4376 /* Sources */,
+				471BF8E720FC281600CB4376 /* Frameworks */,
+				471BF8E820FC281600CB4376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				471BF8EC20FC281600CB4376 /* PBXTargetDependency */,
+			);
+			name = HobbyPlayboyUITests;
+			productName = HobbyPlayboyUITests;
+			productReference = 471BF8EA20FC281600CB4376 /* HobbyPlayboyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		471BF8BF20FC281500CB4376 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Kunliang Wu";
+				TargetAttributes = {
+					471BF8C620FC281500CB4376 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					471BF8DE20FC281600CB4376 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 471BF8C620FC281500CB4376;
+					};
+					471BF8E920FC281600CB4376 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 471BF8C620FC281500CB4376;
+					};
+				};
+			};
+			buildConfigurationList = 471BF8C220FC281500CB4376 /* Build configuration list for PBXProject "HobbyPlayboy" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 471BF8BE20FC281500CB4376;
+			productRefGroup = 471BF8C820FC281500CB4376 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				471BF8C620FC281500CB4376 /* HobbyPlayboy */,
+				471BF8DE20FC281600CB4376 /* HobbyPlayboyTests */,
+				471BF8E920FC281600CB4376 /* HobbyPlayboyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		471BF8C520FC281500CB4376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471BF8D720FC281600CB4376 /* LaunchScreen.storyboard in Resources */,
+				471BF8D420FC281600CB4376 /* Assets.xcassets in Resources */,
+				471BF8D220FC281500CB4376 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471BF8DD20FC281600CB4376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471BF8E820FC281600CB4376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		471BF8C320FC281500CB4376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471BF8CF20FC281500CB4376 /* ViewController.m in Sources */,
+				471BF8DA20FC281600CB4376 /* main.m in Sources */,
+				471BF8CC20FC281500CB4376 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471BF8DB20FC281600CB4376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471BF8E420FC281600CB4376 /* HobbyPlayboyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		471BF8E620FC281600CB4376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471BF8EF20FC281600CB4376 /* HobbyPlayboyUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		471BF8E120FC281600CB4376 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 471BF8C620FC281500CB4376 /* HobbyPlayboy */;
+			targetProxy = 471BF8E020FC281600CB4376 /* PBXContainerItemProxy */;
+		};
+		471BF8EC20FC281600CB4376 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 471BF8C620FC281500CB4376 /* HobbyPlayboy */;
+			targetProxy = 471BF8EB20FC281600CB4376 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		471BF8D020FC281500CB4376 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				471BF8D120FC281500CB4376 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		471BF8D520FC281600CB4376 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				471BF8D620FC281600CB4376 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		471BF8F120FC281600CB4376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		471BF8F220FC281600CB4376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		471BF8F420FC281600CB4376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 294WE6SVDR;
+				INFOPLIST_FILE = HobbyPlayboy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibrighter.HobbyPlayboy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		471BF8F520FC281600CB4376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 294WE6SVDR;
+				INFOPLIST_FILE = HobbyPlayboy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibrighter.HobbyPlayboy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		471BF8F720FC281600CB4376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KN6448CP6C;
+				INFOPLIST_FILE = HobbyPlayboyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibrighter.HobbyPlayboyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HobbyPlayboy.app/HobbyPlayboy";
+			};
+			name = Debug;
+		};
+		471BF8F820FC281600CB4376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KN6448CP6C;
+				INFOPLIST_FILE = HobbyPlayboyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibrighter.HobbyPlayboyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HobbyPlayboy.app/HobbyPlayboy";
+			};
+			name = Release;
+		};
+		471BF8FA20FC281600CB4376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KN6448CP6C;
+				INFOPLIST_FILE = HobbyPlayboyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibrighter.HobbyPlayboyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HobbyPlayboy;
+			};
+			name = Debug;
+		};
+		471BF8FB20FC281600CB4376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KN6448CP6C;
+				INFOPLIST_FILE = HobbyPlayboyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.unibrighter.HobbyPlayboyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HobbyPlayboy;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		471BF8C220FC281500CB4376 /* Build configuration list for PBXProject "HobbyPlayboy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				471BF8F120FC281600CB4376 /* Debug */,
+				471BF8F220FC281600CB4376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		471BF8F320FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				471BF8F420FC281600CB4376 /* Debug */,
+				471BF8F520FC281600CB4376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		471BF8F620FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				471BF8F720FC281600CB4376 /* Debug */,
+				471BF8F820FC281600CB4376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		471BF8F920FC281600CB4376 /* Build configuration list for PBXNativeTarget "HobbyPlayboyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				471BF8FA20FC281600CB4376 /* Debug */,
+				471BF8FB20FC281600CB4376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 471BF8BF20FC281500CB4376 /* Project object */;
+}
