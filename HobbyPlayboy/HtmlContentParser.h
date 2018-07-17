@@ -12,6 +12,6 @@
 @interface HtmlContentParser : NSObject
 
 + (instancetype)sharedInstance;
-- (void)getGalleries;
+- (void)getGalleriesCount:(NSInteger)count pageNumOffset:(NSInteger)pageNumoffset completion:(void(^) (NSArray<Gallery *>*, NSError *))completionBlock;
 
 @end

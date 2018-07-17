@@ -8,10 +8,9 @@
 
 #import "HomeViewController.h"
 #import "HtmlContentParser.h"
+#import "HomeTableViewDataSource.h"
 
-//TODO: change this into a MVVC pattern
-
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController ()
 
 @end
 
@@ -20,20 +19,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    HtmlContentParser * parser = [HtmlContentParser sharedInstance];
-    [parser getGalleries];
+    self.dataSource = [[HomeTableViewDataSource alloc] init];
+    [self.dataSource registerNibForTableView:self.tableView];
+    self.tableView.delegate = self.dataSource;
+    
+    if (0 == self.dataSource.galleries.count){
+        [self loadGalleriesFromPageNum:0];
+    }
     
 }
 
-#pragma mark - TableView Delegate
+#pragma mark - Synchronization
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+- (void)loadGalleriesFromPageNum:(NSInteger)pageNum{
+    //TODO: start loading animation
+    
+    [[HtmlContentParser sharedInstance] getGalleriesCount:0 pageNumOffset:pageNum completion:^(NSArray<Gallery *> *galleries, NSError * error) {
+        if (!error){
+            [self.dataSource.galleries addObjectsFromArray:galleries];
+        }
+    }];
+    
+    
+    
+    
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
-}
+#pragma mark - Helper Functions
+
+
 
 
 

@@ -21,6 +21,9 @@
 		471BF91120FC571F00CB4376 /* NSObject+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF91020FC571F00CB4376 /* NSObject+Utils.m */; };
 		471BF91720FC601300CB4376 /* HtmlContentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF91620FC601300CB4376 /* HtmlContentParser.m */; };
 		471BF91B20FC627100CB4376 /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF91A20FC627100CB4376 /* Gallery.m */; };
+		471BF92420FDE79C00CB4376 /* HomeTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF92320FDE79C00CB4376 /* HomeTableViewDataSource.m */; };
+		471BF92D20FDE89F00CB4376 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF92B20FDE89F00CB4376 /* HomeTableViewCell.m */; };
+		471BF92E20FDE89F00CB4376 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471BF92C20FDE89F00CB4376 /* HomeTableViewCell.xib */; };
 		9502DDD69083989F0D839F20 /* libPods-HobbyPlayboyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */; };
 		EA44C64433FF015ECCE8B465 /* libPods-HobbyPlayboy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */; };
 		EB7211819CEE2156F247D79B /* libPods-HobbyPlayboyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */; };
@@ -77,6 +80,11 @@
 		471BF91620FC601300CB4376 /* HtmlContentParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HtmlContentParser.m; sourceTree = "<group>"; };
 		471BF91920FC627100CB4376 /* Gallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
 		471BF91A20FC627100CB4376 /* Gallery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
+		471BF92220FDE79C00CB4376 /* HomeTableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableViewDataSource.h; sourceTree = "<group>"; };
+		471BF92320FDE79C00CB4376 /* HomeTableViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewDataSource.m; sourceTree = "<group>"; };
+		471BF92A20FDE89F00CB4376 /* HomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
+		471BF92B20FDE89F00CB4376 /* HomeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		471BF92C20FDE89F00CB4376 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +158,8 @@
 		471BF8C920FC281500CB4376 /* HobbyPlayboy */ = {
 			isa = PBXGroup;
 			children = (
+				471BF92620FDE86100CB4376 /* Cell */,
+				471BF92520FDE85200CB4376 /* View */,
 				471BF91820FC622500CB4376 /* Model */,
 				471BF91420FC5FAB00CB4376 /* Manager */,
 				471BF91320FC5EAB00CB4376 /* DataSource */,
@@ -220,6 +230,8 @@
 		471BF91320FC5EAB00CB4376 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
+				471BF92220FDE79C00CB4376 /* HomeTableViewDataSource.h */,
+				471BF92320FDE79C00CB4376 /* HomeTableViewDataSource.m */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -240,6 +252,23 @@
 				471BF91A20FC627100CB4376 /* Gallery.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		471BF92520FDE85200CB4376 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		471BF92620FDE86100CB4376 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				471BF92A20FDE89F00CB4376 /* HomeTableViewCell.h */,
+				471BF92B20FDE89F00CB4376 /* HomeTableViewCell.m */,
+				471BF92C20FDE89F00CB4376 /* HomeTableViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		6CD284F3A5EB379B93C18906 /* Frameworks */ = {
@@ -360,6 +389,7 @@
 			files = (
 				471BF8D720FC281600CB4376 /* LaunchScreen.storyboard in Resources */,
 				471BF8D420FC281600CB4376 /* Assets.xcassets in Resources */,
+				471BF92E20FDE89F00CB4376 /* HomeTableViewCell.xib in Resources */,
 				471BF8D220FC281500CB4376 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +474,8 @@
 			files = (
 				471BF8DA20FC281600CB4376 /* main.m in Sources */,
 				471BF90820FC470000CB4376 /* FavViewController.m in Sources */,
+				471BF92420FDE79C00CB4376 /* HomeTableViewDataSource.m in Sources */,
+				471BF92D20FDE89F00CB4376 /* HomeTableViewCell.m in Sources */,
 				471BF8FF20FC461A00CB4376 /* MainTabBarController.m in Sources */,
 				471BF91720FC601300CB4376 /* HtmlContentParser.m in Sources */,
 				471BF8CC20FC281500CB4376 /* AppDelegate.m in Sources */,

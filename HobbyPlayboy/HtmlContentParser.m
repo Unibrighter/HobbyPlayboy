@@ -20,64 +20,34 @@
     return _sharedInstance;
 }
 
-- (void)getGalleries{
-//    view-source:https://18h.mm-cg.com/serch_doujinall/%E7%9F%AD%E7%AF%87%E3%80%81%E5%90%8C%E4%BA%BA%E5%85%A8%E9%83%A8%E5%88%97%E8%A1%A8_92.htm
-    
+- (void)getGalleriesCount:(NSInteger)count pageNumOffset:(NSInteger)pageNumoffset completion:(void(^) (NSArray<Gallery *>*, NSError *))completionBlock{
     
     //TODO: make this a variable rather than hard-code
-    NSString *urlString = @"https://18h.mm-cg.com/serch_doujinall/%E7%9F%AD%E7%AF%87%E3%80%81%E5%90%8C%E4%BA%BA%E5%85%A8%E9%83%A8%E5%88%97%E8%A1%A8_93.htm";
+    NSMutableString *urlString = [@"https://18h.mm-cg.com/serch_doujinall/%E7%9F%AD%E7%AF%87%E3%80%81%E5%90%8C%E4%BA%BA%E5%85%A8%E9%83%A8%E5%88%97%E8%A1%A8_" mutableCopy];
+    [urlString appendFormat:@"%d.htm", (int)pageNumoffset];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
     [request setValue:urlString forHTTPHeaderField:@"Referer"];
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSMutableArray <Gallery *> *galleries;
         if (!error) {
             TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
             NSArray<TFHppleElement *> *links  = [xpathParser searchWithXPathQuery:@"//a[@class='c1']"];
+            galleries = [[NSMutableArray alloc] initWithCapacity:links.count];
             for (TFHppleElement *linkElement in links) {
+                Gallery *gallery = [[Gallery alloc] init];
+                
                 NSString *referenceURL = [linkElement objectForKey:@"href"];
                 NSString *rawTitle = linkElement.text;
-//                if (!linkElement.attributes[@"href"]) {
-//                    JSContext *context = [JSContext new];
-//                    [context evaluateScript:scriptsElement.firstChild.content];
-//                    JSValue *showKey = [context evaluateScript:@"showkey;"];
-//
-//                    if (![showKey.toString isEqualToString:@"undefined"]) {
-//                        completionToMainThread(HentaiParserStatusSuccess, showKey.toString);
-//                        return;
-//                    }
-//                }
+                
+                gallery.rawTitle = rawTitle;
+                gallery.referenceURLStr = referenceURL;
+                [galleries addObject:gallery];
             }
         }
-        
-        
-//        completionToMainThread(HentaiParserStatusParseFail, nil);
+        completionBlock(galleries,error);
     }] resume];
-    
-    
-    
-    
-    
 }
-
-
-
-
-- (void)list{
-//    NSData  * data      = [NSData dataWithContentsOfFile:@"index.html"];
-//
-//    TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:data];
-//    NSArray * elements  = [doc search:@"//a[@class='sponsor']"];
-//
-//    TFHppleElement * element = [elements objectAtIndex:0];
-//    [e text];                       // The text inside the HTML element (the content of the first text node)
-//    [e tagName];                    // "a"
-//    [e attributes];                 // NSDictionary of href, class, id, etc.
-//    [e objectForKey:@"href"];       // Easy access to single attribute
-//    [e firstChildWithTagName:@"b"]; // The first "b" child node
-}
-
-
-
 
 
 
