@@ -10,10 +10,11 @@
 
 @interface Gallery : NSObject
 
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSNumber *galleryId;
+@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *referenceURLStr;
 @property (strong, nonatomic) NSString *thumbnailURLStr;
-@property (strong, nonatomic) NSMutableArray *pages;
+@property (strong, nonatomic) NSArray *pages;
 @property (strong, nonatomic) NSString *rawTitle;
 @property (strong, nonatomic) NSNumber *pageCount;
 

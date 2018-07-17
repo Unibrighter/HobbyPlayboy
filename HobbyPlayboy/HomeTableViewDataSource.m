@@ -10,20 +10,35 @@
 #import <UIKit/UIKit.h>
 #import "HomeTableViewCell.h"
 #import "Gallery.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation HomeTableViewDataSource
+
+- (instancetype)init{
+    self = [super init];
+    if (self){
+        self.galleries = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (void)registerNibForTableView:(UITableView *)tableView{
     [tableView registerNib:[UINib nibWithNibName:[HomeTableViewCell className] bundle:nil] forCellReuseIdentifier:[HomeTableViewCell className]];
 }
 
-
-
-
 #pragma mark - Table View Delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.galleries.count;
+}
 
-
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeTableViewCell className]];
+    Gallery *gallery = self.galleries[indexPath.row];
+    cell.titleLabel.text = gallery.title;
+    [cell.thumbnailImageView sd_setImageWithURL:[NSURL URLWithString:gallery.thumbnailURLStr]
+                 placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    return cell;
+}
 
 
 

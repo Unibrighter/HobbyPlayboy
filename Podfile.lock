@@ -1,16 +1,22 @@
 PODS:
   - hpple (0.2.0)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
 
 DEPENDENCIES:
   - hpple (~> 0.2)
+  - SDWebImage (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - hpple
+    - SDWebImage
 
 SPEC CHECKSUMS:
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
 
-PODFILE CHECKSUM: 6f65a1737031bd9b3fccd1216a77094b0beb7514
+PODFILE CHECKSUM: bba56759027ef168c010a9b64cf521c11f8e259f
 
 COCOAPODS: 1.5.3

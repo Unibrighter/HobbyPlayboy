@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end

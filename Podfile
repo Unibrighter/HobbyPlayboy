@@ -7,6 +7,7 @@ target 'HobbyPlayboy' do
 
   # Pods for HobbyPlayboy
   pod 'hpple', '~> 0.2'
+  pod 'SDWebImage', '~> 4.0'
 
   target 'HobbyPlayboyTests' do
     inherit! :search_paths
