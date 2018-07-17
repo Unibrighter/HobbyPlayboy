@@ -14,5 +14,7 @@
 @property (strong, nonatomic) NSString *referenceURLStr;
 @property (strong, nonatomic) NSString *thumbnailURLStr;
 @property (strong, nonatomic) NSMutableArray *pages;
+@property (strong, nonatomic) NSString *rawTitle;
+@property (strong, nonatomic) NSNumber *pageCount;
 
 @end

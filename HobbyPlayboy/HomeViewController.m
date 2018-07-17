@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "HtmlContentParser.h"
 
 //TODO: change this into a MVVC pattern
 
@@ -18,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    HtmlContentParser * parser = [HtmlContentParser sharedInstance];
+    [parser getGalleries];
     
 }
 
