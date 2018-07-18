@@ -9,7 +9,7 @@
 #import "BrowserViewController.h"
 #import <UIImageView+WebCache.h>
 
-@interface BrowserViewController () <UIScrollViewDelegate>
+@interface BrowserViewController () <UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end
 
@@ -18,8 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.scrollView.delegate = self;
-    
     self.headerView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -27,17 +25,19 @@
     self.footerView.backgroundColor = [UIColor clearColor];
     self.currentPageIndexBackgroundOverlayView.backgroundColor = [UIColor grayColor];
     self.currentPageIndexBackgroundOverlayView.alpha = BACKGROUND_COLOR_ALPHA;
-    
-
     [self setPagePickerViewHidden:YES animated:NO completion:nil];
-    [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
-    [self.stackView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
     
+    self.scrollView.delegate = self;
+    [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
     self.currentPageIndex = 0;
     self.pageCount = 0;
     self.pageLabel.text = @"0/0";
-    [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
     self.pageLabel.userInteractionEnabled = YES;
+    self.pagePickerView.delegate = self;
+    
+    [self.stackView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
+    [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
+    
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -45,6 +45,8 @@
 }
 
 - (void)loadImagesIntoStackViewFromURLStrings:(NSArray *)URLStrings{
+    self.imageURLStrings = URLStrings;
+    
     [self.activityIndicatorView startAnimating];
     dispatch_async(dispatch_get_main_queue(), ^{
         for (NSString *URLStr in URLStrings) {
@@ -87,6 +89,19 @@
     [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:nil];
 }
 
+#pragma mark - Picker View Delegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return self.imageURLStrings.count;
+}
+
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [@(row) stringValue];
+}
+
 #pragma mark - Helper Functions
 - (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
     self.pagePickerViewHidden = pagePickerViewHidden;
@@ -103,7 +118,7 @@
         self.pagePickerView.alpha = alpha;
         
         self.pagePickerView.hidden = self.pagePickerViewHidden;
-        [self.pagePickerView setNeedsLayout];
+        [self.footerView setNeedsLayout];
         [self.footerView layoutIfNeeded];
     };
     
@@ -121,10 +136,14 @@
             completionBlock();
         }
     }
-    
 }
 
 - (void)setHeaderViewAndFooterViewHidden:(BOOL)hidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
+    if (!(self.headerViewAndFooterViewHidden ^ hidden)){
+        //TODO: if not setting this, it seems that the animation will carried out anyway. Causing UI inconsistance issues
+        //already the same, no action needed
+        return;
+    }
     self.headerViewAndFooterViewHidden = hidden;
     void (^ viewUpdateBlock) (void) = ^ (void){
         if (hidden){
@@ -159,6 +178,8 @@
     }
 }
 
+#pragma mark - EventHandler
+
 - (void)pageLabelTapped:(id)sender{
     [self setPagePickerViewHidden:NO animated:YES completion:nil];
 }
@@ -168,7 +189,8 @@
     [weakSelf setPagePickerViewHidden:YES animated:YES completion:^{
         [self setHeaderViewAndFooterViewHidden:!self.headerViewAndFooterViewHidden animated:YES completion:nil];
     }];
-    
 }
+
+
 
 @end

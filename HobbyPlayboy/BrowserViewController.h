@@ -13,6 +13,7 @@
 @property (assign, nonatomic) NSInteger pageCount;
 @property (assign, nonatomic) NSInteger currentPageIndex;
 @property (assign, nonatomic) BOOL headerViewAndFooterViewHidden;
+@property (strong, nonatomic) NSArray *imageURLStrings;
 
 //content
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
