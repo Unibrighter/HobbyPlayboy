@@ -51,14 +51,16 @@
 
 #pragma mark - ResponderChain
 
-- (void)selectGallery:(id)gallery{
+- (void)selectGallery:(id)object{
     BrowserViewController *browserViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:[BrowserViewController className]];
     browserViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     browserViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     
     [((AppDelegate *)[UIApplication sharedApplication].delegate).mainTabBarController presentViewController:browserViewController animated:YES completion:nil];
     
-    [browserViewController loadImagesIntoStackViewFromURLStrings:((Gallery *)gallery).pages];
+    Gallery *gallery = (Gallery *)object;
+    browserViewController.titleLabel.text = gallery.title;
+    [browserViewController loadImagesIntoStackViewFromURLStrings:gallery.pages];
 }
 
 #pragma mark - Helper Functions

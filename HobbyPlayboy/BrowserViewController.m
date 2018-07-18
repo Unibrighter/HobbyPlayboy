@@ -18,11 +18,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.footerView.backgroundColor = [UIColor clearColor];
-    self.currentPageIndexView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
+    self.scrollView.delegate = self;
+    
     self.headerView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    self.footerView.backgroundColor = [UIColor clearColor];
+    self.currentPageIndexBackgroundOverlayView.backgroundColor = [UIColor grayColor];
+    self.currentPageIndexBackgroundOverlayView.alpha = BACKGROUND_COLOR_ALPHA;
+    
 
-    self.pagePickerViewHidden = YES;
+    [self setPagePickerViewHidden:YES animated:NO completion:nil];
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
     [self.stackView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
     
@@ -30,6 +37,7 @@
     self.pageCount = 0;
     self.pageLabel.text = @"0/0";
     [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
+    self.pageLabel.userInteractionEnabled = YES;
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -67,11 +75,11 @@
 }
 
 - (IBAction)pagePickerCancelButtonTapped:(id)sender {
-    self.pagePickerViewHidden = YES;
+    [self setPagePickerViewHidden:YES animated:YES completion:nil];
 }
 
 - (IBAction)pagePickerDoneButtonTapped:(id)sender {
-    self.pagePickerViewHidden = YES;
+    [self setPagePickerViewHidden:YES animated:YES completion:nil];
 }
 
 #pragma mark - ScrollView Delegate
@@ -80,21 +88,40 @@
 }
 
 #pragma mark - Helper Functions
-- (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden{
-    //when not picking a page num, we need to set the background color of the pageLabel half transparent
-    UIColor *currentPageIndexViewBackgroundColor = [UIColor grayColor];
-    if (pagePickerViewHidden){
-        currentPageIndexViewBackgroundColor = [currentPageIndexViewBackgroundColor colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
+- (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
+    self.pagePickerViewHidden = pagePickerViewHidden;
+    
+    void (^ viewUpdateBlock)(void) = ^ (void){
+        //when not picking a page num, we need to set the background color of the pageLabel half transparent
+        self.currentPageIndexBackgroundOverlayView.alpha = self.pagePickerViewHidden?BACKGROUND_COLOR_ALPHA:1.0;
+        [self.currentPageIndexView bringSubviewToFront:self.pagePickerCancelButton];
+        [self.currentPageIndexView bringSubviewToFront:self.pagePickerDoneButton];
+        CGFloat alpha = self.pagePickerViewHidden?0.0:1.0;
+        
+        self.pagePickerCancelButton.alpha = alpha;
+        self.pagePickerDoneButton.alpha = alpha;
+        self.pagePickerView.alpha = alpha;
+        
+        self.pagePickerView.hidden = self.pagePickerViewHidden;
+        [self.pagePickerView setNeedsLayout];
+        [self.footerView layoutIfNeeded];
+    };
+    
+    if (animated){
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            viewUpdateBlock();
+        } completion:^(BOOL finished) {
+            if (completionBlock){
+                completionBlock();
+            }
+        }];
+    }else{
+        viewUpdateBlock();
+        if (completionBlock){
+            completionBlock();
+        }
     }
-    self.currentPageIndexView.backgroundColor = currentPageIndexViewBackgroundColor;
     
-    _pagePickerViewHidden = pagePickerViewHidden;
-    self.pagePickerCancelButton.hidden = _pagePickerViewHidden;
-    self.pagePickerDoneButton.hidden = _pagePickerViewHidden;
-    self.pagePickerView.hidden = _pagePickerViewHidden;
-    
-    [self.pagePickerView setNeedsLayout];
-    [self.footerView layoutIfNeeded];
 }
 
 - (void)setHeaderViewAndFooterViewHidden:(BOOL)hidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
@@ -133,11 +160,15 @@
 }
 
 - (void)pageLabelTapped:(id)sender{
-    self.pagePickerViewHidden = NO;
+    [self setPagePickerViewHidden:NO animated:YES completion:nil];
 }
 
 - (void)stackViewTapped:(id)sender{
-    [self setHeaderViewAndFooterViewHidden:!self.headerViewAndFooterViewHidden animated:YES completion:nil];
+    __weak typeof (self) weakSelf = self;
+    [weakSelf setPagePickerViewHidden:YES animated:YES completion:^{
+        [self setHeaderViewAndFooterViewHidden:!self.headerViewAndFooterViewHidden animated:YES completion:nil];
+    }];
+    
 }
 
 @end

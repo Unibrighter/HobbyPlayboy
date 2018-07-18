@@ -15,6 +15,7 @@
 @property (assign, nonatomic) BOOL headerViewAndFooterViewHidden;
 
 //content
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 
@@ -26,6 +27,7 @@
 //page select
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIView *currentPageIndexView;
+@property (weak, nonatomic) IBOutlet UIView *currentPageIndexBackgroundOverlayView;
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *pagePickerCancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *pagePickerDoneButton;
