@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MainTabBarController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@property (strong, nonatomic) MainTabBarController* mainTabBarController;
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 

@@ -10,15 +10,14 @@
 #import "MainTabBarController.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.window.rootViewController = [[MainTabBarController alloc] init];
+    self.mainTabBarController = [[MainTabBarController alloc] init];;
+    self.window.rootViewController = self.mainTabBarController;
     [self.window makeKeyAndVisible];
     
     return YES;

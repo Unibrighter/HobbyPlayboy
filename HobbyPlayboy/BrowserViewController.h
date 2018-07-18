@@ -10,8 +10,27 @@
 
 @interface BrowserViewController : UIViewController
 
+@property (assign, nonatomic) NSInteger pageCount;
+@property (assign, nonatomic) NSInteger currentPageIndex;
+@property (assign, nonatomic) BOOL headerViewAndFooterViewHidden;
+
+//content
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
+
+//title
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+//page select
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UIView *currentPageIndexView;
+@property (weak, nonatomic) IBOutlet UILabel *pageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *pagePickerCancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *pagePickerDoneButton;
+@property (assign, nonatomic) BOOL pagePickerViewHidden;
+@property (weak, nonatomic) IBOutlet UIPickerView *pagePickerView;
 
 - (void)loadImagesIntoStackViewFromURLStrings:(NSArray *)URLStrings;
 

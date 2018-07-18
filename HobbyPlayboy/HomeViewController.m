@@ -53,7 +53,11 @@
 
 - (void)selectGallery:(id)gallery{
     BrowserViewController *browserViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:[BrowserViewController className]];
-    [self presentViewController:browserViewController animated:YES completion:nil];
+    browserViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    browserViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).mainTabBarController presentViewController:browserViewController animated:YES completion:nil];
+    
     [browserViewController loadImagesIntoStackViewFromURLStrings:((Gallery *)gallery).pages];
 }
 
