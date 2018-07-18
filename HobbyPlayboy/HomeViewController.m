@@ -9,6 +9,8 @@
 #import "HomeViewController.h"
 #import "HtmlContentParser.h"
 #import "HomeTableViewDataSource.h"
+#import "BrowserViewController.h"
+#import "Gallery.h"
 
 @interface HomeViewController ()
 
@@ -43,9 +45,16 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
-            
         }
     }];
+}
+
+#pragma mark - ResponderChain
+
+- (void)selectGallery:(id)gallery{
+    BrowserViewController *browserViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:[BrowserViewController className]];
+    [self presentViewController:browserViewController animated:YES completion:nil];
+    [browserViewController loadImagesIntoStackViewFromURLStrings:((Gallery *)gallery).pages];
 }
 
 #pragma mark - Helper Functions

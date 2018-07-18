@@ -9,8 +9,10 @@
 #import "HomeTableViewDataSource.h"
 #import <UIKit/UIKit.h>
 #import "HomeTableViewCell.h"
+#import "BrowserViewController.h"
 #import "Gallery.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "UIResponder+ResponderChain.h"
 
 @implementation HomeTableViewDataSource
 
@@ -40,6 +42,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Gallery *gallery = self.galleries[indexPath.row];
+    [tableView performSelectorViaResponderChain:@selector(selectGallery:) withObject:gallery];
+}
 
 
 @end
