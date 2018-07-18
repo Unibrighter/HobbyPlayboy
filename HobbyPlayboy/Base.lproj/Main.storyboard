@@ -76,6 +76,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="49" id="NEC-Hd-qMX"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="autoScrollSwitchValueChanged:" destination="DM4-y8-aES" eventType="valueChanged" id="fC6-WB-tO7"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-Ad-tno">
                                         <rect key="frame" x="166" y="0.0" width="42" height="44"/>
@@ -197,6 +200,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="VJw-zS-uqs" id="Bud-ag-p3b"/>
+                        <outlet property="autoScrollSwitch" destination="ByN-rH-azU" id="27A-rE-xgH"/>
                         <outlet property="backButton" destination="rJi-Qp-ECP" id="zNr-fO-Ri5"/>
                         <outlet property="currentPageIndexBackgroundOverlayView" destination="V2g-5Q-n2L" id="mM9-BQ-fcJ"/>
                         <outlet property="currentPageIndexView" destination="nEd-uY-GAS" id="klp-P9-nev"/>

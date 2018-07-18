@@ -23,6 +23,7 @@
 //title
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *autoScrollSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 //page select

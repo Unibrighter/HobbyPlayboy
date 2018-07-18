@@ -10,13 +10,16 @@
 #import <UIImageView+WebCache.h>
 
 @interface BrowserViewController () <UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
-
+@property (strong, nonatomic) NSTimer *autoScrollTimer;
 @end
 
 @implementation BrowserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //TODO: use NSUserPreference to store the time interval option
+    self.autoScrollSwitch.on = self.autoScrollTimer.valid;
     
     self.headerView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
     self.titleLabel.numberOfLines = 0;
@@ -40,7 +43,6 @@
     
     [self.stackView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
     [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
-    
 }
 
 - (BOOL)prefersStatusBarHidden{
@@ -72,6 +74,14 @@
 
 #pragma mark - IBAction
 
+- (IBAction)autoScrollSwitchValueChanged:(id)sender {
+    if (self.autoScrollSwitch.on){
+        [self setupAutoScrollTimer];
+    }else{
+        [self.autoScrollTimer invalidate];
+    }
+}
+
 - (IBAction)backButtonTapped:(id)sender {
     __weak typeof(self) weakSelf = self;
     [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:^{
@@ -87,9 +97,6 @@
     NSInteger selectedIndex = [self.pagePickerView selectedRowInComponent:0];
     if (-1 != selectedIndex){
         self.currentPageIndex = selectedIndex;
-        CGRect targetRect = self.stackView.arrangedSubviews[self.currentPageIndex].frame;
-        targetRect.size.height = self.scrollView.frame.size.height;
-        [self.scrollView scrollRectToVisible:targetRect animated:YES];
     }
     [self setPagePickerViewHidden:YES animated:YES completion:nil];
 }
@@ -114,15 +121,33 @@
 
 #pragma mark - Helper Functions
 
+- (void)setupAutoScrollTimer{
+    //TODO: use NSUserPreference to store the time interval option
+    if (!self.autoScrollTimer || !self.autoScrollTimer.valid)
+    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+}
+
+- (void)scrollToNextPage{
+    self.currentPageIndex++;
+}
+
 - (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
-    if (currentPageIndex < 0 && currentPageIndex >= self.pageCount){
+    if (currentPageIndex < 0 || currentPageIndex >= self.pageCount){
         NSLog(@"Invalid value for currentPageIndex.");
+        if (self.autoScrollTimer.valid){
+            [self.autoScrollTimer invalidate];
+        }
         return;
     }else{
         _currentPageIndex = currentPageIndex;
+        
+        //update UI
         dispatch_async(dispatch_get_main_queue(), ^{
             self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.pageCount];
         });
+        CGRect targetRect = self.stackView.arrangedSubviews[self.currentPageIndex].frame;
+        targetRect.size.height = self.scrollView.frame.size.height;
+        [self.scrollView scrollRectToVisible:targetRect animated:YES];
     }
 }
 
@@ -139,6 +164,9 @@
         self.pagePickerView.alpha = alpha;
         
         self.pagePickerView.hidden = pagePickerViewHidden;
+        if (!self.pagePickerView.hidden){
+            [self.pagePickerView selectRow:self.currentPageIndex inComponent:0 animated:NO];
+        }
         [self.footerView setNeedsLayout];
         [self.footerView layoutIfNeeded];
     };
@@ -209,6 +237,7 @@
 
 - (void)stackViewTapped:(id)sender{
     __weak typeof (self) weakSelf = self;
+    
     [weakSelf setPagePickerViewHidden:YES animated:YES completion:^{
         [self setHeaderViewAndFooterViewHidden:!self.headerViewAndFooterViewHidden animated:YES completion:nil];
     }];
