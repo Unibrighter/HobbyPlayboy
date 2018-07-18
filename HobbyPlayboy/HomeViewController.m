@@ -25,8 +25,8 @@
     [self.dataSource registerNibForTableView:self.tableView];
     self.tableView.delegate = self.dataSource;
     self.tableView.dataSource = self.dataSource;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 120;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     if (0 == self.dataSource.galleries.count){
         [self loadGalleriesFromPageNum:0];
