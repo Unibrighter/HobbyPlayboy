@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 @class Gallery;
 
-@interface HomeTableViewDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface HomeTableViewDataSource : NSObject <UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 @property NSMutableArray <Gallery *>* galleries;
 
 - (void)registerNibForTableView:(UITableView *)tableView;

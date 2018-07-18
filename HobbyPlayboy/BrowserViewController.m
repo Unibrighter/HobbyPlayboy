@@ -29,11 +29,14 @@
     
     self.scrollView.delegate = self;
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
-    self.currentPageIndex = 0;
     self.pageCount = 0;
-    self.pageLabel.text = @"0/0";
+    self.currentPageIndex = 0;
+    
     self.pageLabel.userInteractionEnabled = YES;
     self.pagePickerView.delegate = self;
+    
+    //TODO: change this into the saved offset from last time
+    [self.pagePickerView selectRow:self.currentPageIndex inComponent:0 animated:YES];
     
     [self.stackView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
     [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
@@ -59,11 +62,11 @@
                 
                 [imageView addConstraint:ratioConstraint];
             }];
+            [self.stackView removeArrangedSubview:self.activityIndicatorView];
             [self.stackView addArrangedSubview:imageView];
         }
-        [self.activityIndicatorView stopAnimating];
         self.pageCount = URLStrings.count;
-        self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld",self.currentPageIndex, self.pageCount];
+        self.currentPageIndex = 0;
     });
 }
 
@@ -81,6 +84,13 @@
 }
 
 - (IBAction)pagePickerDoneButtonTapped:(id)sender {
+    NSInteger selectedIndex = [self.pagePickerView selectedRowInComponent:0];
+    if (-1 != selectedIndex){
+        self.currentPageIndex = selectedIndex;
+        CGRect targetRect = self.stackView.arrangedSubviews[self.currentPageIndex].frame;
+        targetRect.size.height = self.scrollView.frame.size.height;
+        [self.scrollView scrollRectToVisible:targetRect animated:YES];
+    }
     [self setPagePickerViewHidden:YES animated:YES completion:nil];
 }
 
@@ -99,25 +109,36 @@
 }
 
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [@(row) stringValue];
+    return [@(row+1) stringValue];
 }
 
 #pragma mark - Helper Functions
+
+- (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
+    if (currentPageIndex < 0 && currentPageIndex >= self.pageCount){
+        NSLog(@"Invalid value for currentPageIndex.");
+        return;
+    }else{
+        _currentPageIndex = currentPageIndex;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.pageCount];
+        });
+    }
+}
+
 - (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
-    self.pagePickerViewHidden = pagePickerViewHidden;
-    
     void (^ viewUpdateBlock)(void) = ^ (void){
         //when not picking a page num, we need to set the background color of the pageLabel half transparent
-        self.currentPageIndexBackgroundOverlayView.alpha = self.pagePickerViewHidden?BACKGROUND_COLOR_ALPHA:1.0;
+        self.currentPageIndexBackgroundOverlayView.alpha = pagePickerViewHidden?BACKGROUND_COLOR_ALPHA:1.0;
         [self.currentPageIndexView bringSubviewToFront:self.pagePickerCancelButton];
         [self.currentPageIndexView bringSubviewToFront:self.pagePickerDoneButton];
-        CGFloat alpha = self.pagePickerViewHidden?0.0:1.0;
+        CGFloat alpha = pagePickerViewHidden?0.0:1.0;
         
         self.pagePickerCancelButton.alpha = alpha;
         self.pagePickerDoneButton.alpha = alpha;
         self.pagePickerView.alpha = alpha;
         
-        self.pagePickerView.hidden = self.pagePickerViewHidden;
+        self.pagePickerView.hidden = pagePickerViewHidden;
         [self.footerView setNeedsLayout];
         [self.footerView layoutIfNeeded];
     };
@@ -127,12 +148,14 @@
             viewUpdateBlock();
         } completion:^(BOOL finished) {
             if (completionBlock){
+                self.pagePickerViewHidden = pagePickerViewHidden;
                 completionBlock();
             }
         }];
     }else{
         viewUpdateBlock();
         if (completionBlock){
+            self.pagePickerViewHidden = pagePickerViewHidden;
             completionBlock();
         }
     }

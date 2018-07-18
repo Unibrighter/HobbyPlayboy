@@ -59,7 +59,7 @@
     [((AppDelegate *)[UIApplication sharedApplication].delegate).mainTabBarController presentViewController:browserViewController animated:YES completion:nil];
     
     Gallery *gallery = (Gallery *)object;
-    browserViewController.titleLabel.text = gallery.title;
+    browserViewController.titleLabel.text = gallery.rawTitle;
     [browserViewController loadImagesIntoStackViewFromURLStrings:gallery.pages];
 }
 

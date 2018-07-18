@@ -78,7 +78,7 @@
                                         </constraints>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLl-Ad-tno">
-                                        <rect key="frame" x="166" y="12" width="42" height="20.5"/>
+                                        <rect key="frame" x="166" y="0.0" width="42" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -102,8 +102,10 @@
                                     <constraint firstAttribute="trailing" secondItem="rJi-Qp-ECP" secondAttribute="trailing" constant="16" id="A8m-Hf-fmN"/>
                                     <constraint firstItem="ByN-rH-azU" firstAttribute="leading" secondItem="hZx-of-K9c" secondAttribute="leading" constant="16" id="J38-Mu-Sp4"/>
                                     <constraint firstItem="ByN-rH-azU" firstAttribute="centerY" secondItem="hZx-of-K9c" secondAttribute="centerY" id="fpb-rO-fh6"/>
+                                    <constraint firstItem="CLl-Ad-tno" firstAttribute="top" secondItem="hZx-of-K9c" secondAttribute="top" id="gDf-gP-Sjm"/>
                                     <constraint firstItem="CLl-Ad-tno" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ByN-rH-azU" secondAttribute="trailing" constant="16" id="nUE-Jy-2Ui"/>
                                     <constraint firstItem="CLl-Ad-tno" firstAttribute="centerX" secondItem="hZx-of-K9c" secondAttribute="centerX" id="oCu-GZ-cy0"/>
+                                    <constraint firstAttribute="bottom" secondItem="CLl-Ad-tno" secondAttribute="bottom" id="oIO-xl-ete"/>
                                     <constraint firstItem="rJi-Qp-ECP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CLl-Ad-tno" secondAttribute="trailing" constant="16" id="olQ-32-12t"/>
                                 </constraints>
                             </view>
