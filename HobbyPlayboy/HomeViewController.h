@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class HomeTableViewDataSource;
 @class Gallery;
 
 @interface HomeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) HomeTableViewDataSource *dataSource;
+@property (strong, nonatomic) UISearchController *searchViewController;
 
 - (void)selectGallery:(Gallery *)gallery;
 @end

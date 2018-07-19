@@ -21,6 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.searchViewController = [[UISearchController alloc] initWithSearchResultsController:nil];
+//    self.navigationItem.hidesSearchBarWhenScrolling = NO;
+//    if (@available(iOS 11.0, *)) {
+//        self.navigationItem.searchController = self.searchViewController;
+//    } else {
+        // Fallback on earlier versions
+//        self.navigationItem.titleView = self.searchViewController.searchBar;
+//    }
+    self.navigationItem.titleView = [[UISearchBar alloc] init];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:nil];
+    
     self.dataSource = [[HomeTableViewDataSource alloc] init];
     [self.dataSource registerNibForTableView:self.tableView];
     self.tableView.delegate = self.dataSource;
