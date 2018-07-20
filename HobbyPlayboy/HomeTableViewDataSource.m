@@ -35,10 +35,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeTableViewCell className]];
+    
     Gallery *gallery = self.galleries[indexPath.row];
     cell.titleLabel.text = gallery.title;
+    cell.pageCountLabel.text = [NSString stringWithFormat:@"%@p", [gallery.pageCount stringValue]];
     [cell.thumbnailImageView sd_setImageWithURL:[NSURL URLWithString:gallery.thumbnailURLStr]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    
+    cell.detailViewHidden = YES;
     return cell;
 }
 
