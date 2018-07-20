@@ -24,13 +24,23 @@
     self.airTimeContentLabel.numberOfLines = 0;
     self.languageContentLabel.numberOfLines = 0;
     self.categoryContentLabel.numberOfLines = 0;
+    
+    self.detailContainerView.alpha = 0.0;
 }
 
 - (IBAction)toggleDetailViewButtonTapped:(id)sender {
     UITableView *tableView = self.tableView;
-    [tableView beginUpdates];
-    self.detailViewHidden = !self.detailViewHidden;
-    [tableView endUpdates];
+    
+    //preparation
+    self.detailContainerView.alpha = 0.0;
+    
+    [tableView performBatchUpdates:^{
+        self.detailViewHidden = !self.detailViewHidden;
+    } completion:^(BOOL finished) {
+        self.detailContainerView.alpha = self.detailViewHidden?0.0:1.0;
+    }];
+    
+    [self.detailViewToggleButton setTitle:self.detailViewHidden?@"More":@"Collapse" forState:UIControlStateNormal];
 }
 
 - (IBAction)downloadButtonTapped:(id)sender {
@@ -52,13 +62,12 @@
         [self.categoryContentLabel sizeToFit];
         
         detailViewHeight =
-        self.bottomPaddingViewHeightConstraint.constant+
+        self.paddingViewHeightConstraint.constant+
         CGRectGetHeight(self.tagsContentLabel.frame)+CGRectGetHeight(self.airTimeContentLabel.frame)+
         CGRectGetHeight(self.languageContentLabel.frame)+CGRectGetHeight(self.categoryContentLabel.frame);
     }
     
     self.detailViewHeightConstraint.constant = detailViewHeight;
-    self.detailContainerView.alpha = detailViewHidden?0.0:1.0;
     [self.contentView setNeedsLayout];
     [self.contentView layoutIfNeeded];
     _detailViewHidden = detailViewHidden;
