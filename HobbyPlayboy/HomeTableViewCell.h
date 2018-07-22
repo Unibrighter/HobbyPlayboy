@@ -33,8 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *languageContentLabel;
 
 //detail view height control
-@property (weak, nonatomic) IBOutlet UIView *paddingView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *paddingViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewBottomPaddingHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeightConstraint;
 
 @end

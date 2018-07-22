@@ -78,8 +78,7 @@
     [self.languageContentLabel sizeToFit];
     [self.categoryContentLabel sizeToFit];
 
-    CGFloat detailViewHeight =
-    self.paddingViewHeightConstraint.constant+
+    CGFloat detailViewHeight =self.detailViewBottomPaddingHeightConstraint.constant+
     CGRectGetHeight(self.tagsContentLabel.frame)+
     CGRectGetHeight(self.airTimeContentLabel.frame)+
     CGRectGetHeight(self.languageContentLabel.frame)+
