@@ -18,5 +18,8 @@
 @property (strong, nonatomic) HomeTableViewDataSource *dataSource;
 @property (strong, nonatomic) UISearchController *searchViewController;
 
+//responder chain method
 - (void)selectGallery:(Gallery *)gallery;
+- (void)downloadGalleryWithGalleryId:(NSString *)galleryId;
+
 @end

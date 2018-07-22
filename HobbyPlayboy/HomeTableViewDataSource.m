@@ -20,6 +20,7 @@
     self = [super init];
     if (self){
         self.galleries = [[NSMutableArray alloc] init];
+        self.detailViewExpandedIndexes = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -42,7 +43,11 @@
     [cell.thumbnailImageView sd_setImageWithURL:[NSURL URLWithString:gallery.thumbnailURLStr]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
-    cell.detailViewHidden = YES;
+    //check if need to persist the expansion status of some cells if needed
+    if ([self.detailViewExpandedIndexes containsObject:indexPath]){
+        cell.detailContainerView.hidden = NO;
+    }
+    
     return cell;
 }
 

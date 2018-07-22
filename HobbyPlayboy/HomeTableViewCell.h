@@ -10,7 +10,6 @@
 
 @interface HomeTableViewCell : UITableViewCell
 
-@property (assign, nonatomic) BOOL detailViewHidden;
 @property (strong, nonatomic) NSString *galleryId;
 
 @property (weak, nonatomic) IBOutlet UIView *captionContainerView;

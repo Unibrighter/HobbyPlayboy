@@ -8,6 +8,7 @@
 
 #import "HomeTableViewCell.h"
 #import "UIResponder+ResponderChain.h"
+#import "HomeTableViewDataSource.h"
 
 @implementation HomeTableViewCell
 
@@ -25,54 +26,42 @@
     self.languageContentLabel.numberOfLines = 0;
     self.categoryContentLabel.numberOfLines = 0;
     
-    self.detailContainerView.alpha = 0.0;
+    self.detailContainerView.hidden = YES;
+}
+
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    self.detailContainerView.hidden = YES;
+}
+
+#pragma mark - IBAction
+- (IBAction)downloadButtonTapped:(id)sender {
+    [self performSelectorViaResponderChain:@selector(downloadGalleryWithGalleryId:) withObject:self.galleryId];
 }
 
 - (IBAction)toggleDetailViewButtonTapped:(id)sender {
     UITableView *tableView = self.tableView;
     
-    //preparation
-    self.detailContainerView.alpha = 0.0;
-    
-    [tableView performBatchUpdates:^{
-        self.detailViewHidden = !self.detailViewHidden;
-    } completion:^(BOOL finished) {
-        self.detailContainerView.alpha = self.detailViewHidden?0.0:1.0;
-    }];
-    
-    [self.detailViewToggleButton setTitle:self.detailViewHidden?@"More":@"Collapse" forState:UIControlStateNormal];
-}
-
-- (IBAction)downloadButtonTapped:(id)sender {
-    [self performSelectorViaResponderChain:@selector(downloadGalleryWithCell:) withObject:self];
-}
-
-- (void)setDetailViewHidden:(BOOL)detailViewHidden{
-    if (!(_detailViewHidden ^ detailViewHidden)){
-        return;
-    }
-
-    CGFloat detailViewHeight = 0.0;
-    
-    if (!detailViewHidden){
-        //calculate the constraint dynamically
-        [self.tagsContentLabel sizeToFit];
-        [self.airTimeContentLabel sizeToFit];
-        [self.languageContentLabel sizeToFit];
-        [self.categoryContentLabel sizeToFit];
-        
-        detailViewHeight =
-        self.paddingViewHeightConstraint.constant+
-        CGRectGetHeight(self.tagsContentLabel.frame)+CGRectGetHeight(self.airTimeContentLabel.frame)+
-        CGRectGetHeight(self.languageContentLabel.frame)+CGRectGetHeight(self.categoryContentLabel.frame);
-    }
-    
-    self.detailViewHeightConstraint.constant = detailViewHeight;
+    self.detailViewHeightConstraint.constant = [self getDetailViewHeight];
     [self.contentView setNeedsLayout];
     [self.contentView layoutIfNeeded];
-    _detailViewHidden = detailViewHidden;
+    
+    [tableView performBatchUpdates:^{
+        self.detailContainerView.hidden = !self.detailContainerView.hidden;
+    } completion:^(BOOL finished) {
+    }];
+    
+    [self.detailViewToggleButton setTitle:self.detailContainerView.hidden?@"More":@"Collapse" forState:UIControlStateNormal];
+    
+    //inform the data source that this detail view has been expanded
+    if (!self.detailContainerView.hidden){
+        HomeTableViewDataSource *dataSource = (HomeTableViewDataSource *)tableView.dataSource;
+        NSIndexPath *expandedIndex = [tableView indexPathForCell:self];
+        [dataSource.detailViewExpandedIndexes addObject:expandedIndex];
+    }
 }
 
+#pragma mark - Helper Functions
 - (UITableView *)tableView{
     //see https://stackoverflow.com/questions/15711645/how-to-get-uitableview-from-uitableviewcell
     id view = [self superview];
@@ -80,6 +69,23 @@
         view = [view superview];
     }
     return view;
+}
+
+- (CGFloat)getDetailViewHeight{
+    //calculate the constraint dynamically
+    [self.tagsContentLabel sizeToFit];
+    [self.airTimeContentLabel sizeToFit];
+    [self.languageContentLabel sizeToFit];
+    [self.categoryContentLabel sizeToFit];
+
+    CGFloat detailViewHeight =
+    self.paddingViewHeightConstraint.constant+
+    CGRectGetHeight(self.tagsContentLabel.frame)+
+    CGRectGetHeight(self.airTimeContentLabel.frame)+
+    CGRectGetHeight(self.languageContentLabel.frame)+
+    CGRectGetHeight(self.categoryContentLabel.frame);
+    
+    return detailViewHeight;
 }
 
 @end
