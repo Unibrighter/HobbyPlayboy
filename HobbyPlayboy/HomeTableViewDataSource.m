@@ -43,7 +43,8 @@
     [cell.thumbnailImageView sd_setImageWithURL:[NSURL URLWithString:gallery.thumbnailURLStr]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
-    cell.detailViewHeightConstraint.constant = [cell getDetailViewHeight];
+    //once the content the detail view(e.g. labels) are set, the constraint needs update
+    [cell updateDetailViewHeightConstraint];
     
     //check if need to persist the expansion status of some cells if needed
     if ([self.detailViewExpandedIndexes containsObject:indexPath]){

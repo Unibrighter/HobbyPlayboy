@@ -75,6 +75,11 @@
     [browserViewController loadImagesIntoStackViewFromURLStrings:gallery.pages];
 }
 
+- (void)downloadGalleryWithGalleryId:(NSString *)galleryId{
+    //TODO: implement me
+    NSLog(@"download gallery with id: %@", galleryId);
+}
+
 #pragma mark - Helper Functions
 
 

@@ -29,9 +29,13 @@
     self.detailContainerView.hidden = YES;
 }
 
--(void)prepareForReuse{
+- (void)prepareForReuse{
     [super prepareForReuse];
     self.detailContainerView.hidden = YES;
+}
+
+- (void)updateDetailViewHeightConstraint{
+    self.detailViewHeightConstraint.constant = [self getDetailViewHeight];
 }
 
 #pragma mark - IBAction

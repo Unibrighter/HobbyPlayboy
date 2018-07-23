@@ -122,11 +122,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TaA-bS-swt">
                                         <rect key="frame" x="96.5" y="0.0" width="251.5" height="228"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzb-Bi-AwZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzb-Bi-AwZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="251.5" height="57"/>
-                                                <string key="text">&lt;NSLayoutConstraint:0x600000280780 V:[UIView:0x7ff302605b60]-(16)-[UIStackView:0x7ff30261eda0]   (active)&gt;",
-    "&lt;NSLayoutConstraint:0x600000281090 'UISV-canvas-connection' UIStackView:0x7ff30261eda0.top == UIView:0x7ff30261efb0.top   (active)&gt;",
-    "&lt;NSLayoutConstr</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
