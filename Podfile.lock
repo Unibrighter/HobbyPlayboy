@@ -1,22 +1,28 @@
 PODS:
   - hpple (0.2.0)
+  - Realm (3.7.2):
+    - Realm/Headers (= 3.7.2)
+  - Realm/Headers (3.7.2)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
 
 DEPENDENCIES:
   - hpple (~> 0.2)
+  - Realm
   - SDWebImage (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - hpple
+    - Realm
     - SDWebImage
 
 SPEC CHECKSUMS:
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+  Realm: dd18c3014e8d90df300b83c6da740067436089c5
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
 
-PODFILE CHECKSUM: bba56759027ef168c010a9b64cf521c11f8e259f
+PODFILE CHECKSUM: 7063940e6915e7498185d61273359b32f4c37884
 
 COCOAPODS: 1.5.3
