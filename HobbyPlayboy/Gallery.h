@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
-@interface Gallery : NSObject
+@interface Gallery : RLMObject
 
-@property (strong, nonatomic) NSNumber *galleryId;
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *referenceURLStr;
-@property (strong, nonatomic) NSString *thumbnailURLStr;
-@property (strong, nonatomic) NSArray *pages;
-@property (strong, nonatomic) NSString *rawTitle;
-@property (strong, nonatomic) NSNumber *pageCount;
+@property NSInteger galleryId;
+@property NSString *title;
+@property NSString *referenceURLStr;
+@property NSString *thumbnailURLStr;
+
+//TODO: this needs to be expanded into two separate arraies
+@property RLMArray <RLMString> *pages;
+@property NSString *rawTitle;
+@property NSInteger pageCount;
 
 @end

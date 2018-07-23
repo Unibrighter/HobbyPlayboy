@@ -7,7 +7,8 @@
 //
 
 #import "BrowserViewController.h"
-#import <UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIView+WebCache.h>
 
 @interface BrowserViewController () <UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) NSTimer *autoScrollTimer;
@@ -49,13 +50,15 @@
     return YES;
 }
 
-- (void)loadImagesIntoStackViewFromURLStrings:(NSArray *)URLStrings{
+- (void)loadImagesIntoStackViewFromURLStrings:(id <NSFastEnumeration>)URLStrings{
     self.imageURLStrings = URLStrings;
     
     [self.activityIndicatorView startAnimating];
     dispatch_async(dispatch_get_main_queue(), ^{
         for (NSString *URLStr in URLStrings) {
             UIImageView *imageView = [[UIImageView alloc] init];
+            [imageView sd_setShowActivityIndicatorView:YES];
+            [imageView sd_showActivityIndicatorView];
             [imageView sd_setImageWithURL:[NSURL URLWithString:URLStr] placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 imageView.translatesAutoresizingMaskIntoConstraints = NO;
                 
@@ -67,7 +70,7 @@
             [self.stackView removeArrangedSubview:self.activityIndicatorView];
             [self.stackView addArrangedSubview:imageView];
         }
-        self.pageCount = URLStrings.count;
+        self.pageCount = [self getPageCountFromImageURLStrings:self.imageURLStrings];
         self.currentPageIndex = 0;
     });
 }
@@ -112,7 +115,7 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return self.imageURLStrings.count;
+    return [self getPageCountFromImageURLStrings:self.imageURLStrings];
 }
 
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
@@ -243,6 +246,12 @@
     }];
 }
 
-
+- (NSInteger)getPageCountFromImageURLStrings:(id<NSFastEnumeration>)imageURLStrings{
+    NSInteger count = 0;
+    for (id obj in imageURLStrings){
+        count++;
+    }
+    return count;
+}
 
 @end

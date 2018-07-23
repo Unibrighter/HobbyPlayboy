@@ -13,7 +13,7 @@
 @property (assign, nonatomic) NSInteger pageCount;
 @property (assign, nonatomic) NSInteger currentPageIndex;
 @property (assign, nonatomic) BOOL headerViewAndFooterViewHidden;
-@property (strong, nonatomic) NSArray *imageURLStrings;
+@property (strong, nonatomic) id<NSFastEnumeration> imageURLStrings;
 
 //content
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -36,6 +36,6 @@
 @property (assign, nonatomic) BOOL pagePickerViewHidden;
 @property (weak, nonatomic) IBOutlet UIPickerView *pagePickerView;
 
-- (void)loadImagesIntoStackViewFromURLStrings:(NSArray *)URLStrings;
+- (void)loadImagesIntoStackViewFromURLStrings:(id <NSFastEnumeration>)URLStrings;
 
 @end

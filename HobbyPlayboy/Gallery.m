@@ -7,10 +7,30 @@
 //
 
 #import "Gallery.h"
+#import <Realm/Realm.h>
+
+//@property (assign, nonatomic) NSInteger galleryId;
+//@property (strong, nonatomic) NSString *title;
+//@property (strong, nonatomic) NSString *referenceURLStr;
+//@property (strong, nonatomic) NSString *thumbnailURLStr;
+//@property (strong, nonatomic) RLMArray <RLMString> *pages;
+//@property (strong, nonatomic) NSString *rawTitle;
+//@property (assign, nonatomic) NSInteger pageCount;
 
 @implementation Gallery
 
--(void)setRawTitle:(NSString *)rawTitle{
+#pragma mark - Realm
++ (NSString *)primaryKey{
+    return @"galleryId";
+}
+
++ (NSArray<NSString *> *)requiredProperties{
+    return @[@"galleryId", @"referenceURLStr", @"rawTitle"];
+}
+
+#pragma mark - Helper Functions
+
+- (void)setRawTitle:(NSString *)rawTitle{
     _rawTitle = rawTitle;
     if (_rawTitle && _rawTitle.length != 0){
         //refer the name and page count from the rawTitle if possible
@@ -23,7 +43,7 @@
         if (match != nil) {
             NSString *pageCountStr = [self.rawTitle substringWithRange:[match rangeAtIndex:2]];
             NSInteger pageCount = [pageCountStr integerValue];
-            self.pageCount = @(pageCount);
+            self.pageCount = pageCount;
             
             NSString *titleStr = [self.rawTitle substringWithRange:[match rangeAtIndex:4]];
             self.title = titleStr;
@@ -38,24 +58,26 @@
         NSInteger IdIndexStart = [self.referenceURLStr rangeOfString:@"_"].location+1;
         NSInteger IdIndexEnd = [self.referenceURLStr rangeOfString:@".html"].location-1;
         NSInteger galleryId = [[self.referenceURLStr substringWithRange:NSMakeRange(IdIndexStart, IdIndexEnd-IdIndexStart+1)] integerValue];
-        self.galleryId = @(galleryId);
+        self.galleryId = galleryId;
         
         NSInteger galleryIdAdjusted = 10000+galleryId;
         NSString *thumbnailURLStr = [NSString stringWithFormat:@"http://fchost1.imgscloud.com/s/hcshort/hc%ld.jpg", galleryIdAdjusted];
         self.thumbnailURLStr = thumbnailURLStr;
         
+        //TODO: fix this
         self.pages = [self getPagesWithGalleryId:self.galleryId pageCount:self.pageCount];
     }
 }
 
 #pragma mark - Helper Fuctions
 
-- (NSArray *)getPagesWithGalleryId:(NSNumber *)galleryId pageCount:(NSNumber *)pageCount{
-    NSMutableArray *pages = [[NSMutableArray alloc] initWithCapacity:[galleryId integerValue]];
+- (NSArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
     
-    NSInteger galleryIdAdjusted = 10000+[galleryId integerValue];
+    NSMutableArray *pages = [[NSMutableArray alloc] initWithCapacity:galleryId];
+    
+    NSInteger galleryIdAdjusted = 10000+galleryId;
     NSString *imageURL;
-    for (int i = 1; i <= [pageCount integerValue]; i++) {
+    for (int i = 1; i <= pageCount; i++) {
         NSString *pageOffset = [NSString stringWithFormat:@"%03d", i];
         imageURL = [NSString stringWithFormat:@"http://hahost2.imgscloud.com/fileshort/%ld/%ld_%@.jpg", galleryIdAdjusted, galleryIdAdjusted, pageOffset];
         [pages addObject:imageURL];

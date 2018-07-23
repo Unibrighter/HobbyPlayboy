@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainTabBarController.h"
+#import <Realm/Realm.h>
 
 @interface AppDelegate ()
 @end
@@ -15,6 +16,10 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //TODO: add debug marcro here
+    NSLog([[RLMRealmConfiguration defaultConfiguration].fileURL absoluteString]);
+    
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.mainTabBarController = [[MainTabBarController alloc] init];;
     self.window.rootViewController = self.mainTabBarController;

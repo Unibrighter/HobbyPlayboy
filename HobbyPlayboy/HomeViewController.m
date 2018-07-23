@@ -13,7 +13,7 @@
 #import "Gallery.h"
 
 @interface HomeViewController ()
-
+@property (strong, nonatomic) RLMNotificationToken *realmNotificationToken;
 @end
 
 @implementation HomeViewController
@@ -44,6 +44,8 @@
         [self loadGalleriesFromPageNum:0];
     }
     
+    [self setupRealmNotifications];
+    
 }
 
 #pragma mark - Synchronization
@@ -52,11 +54,16 @@
     //TODO: start loading animation
     [[HtmlContentParser sharedInstance] getGalleriesCount:0 pageNumOffset:pageNum completion:^(NSArray<Gallery *> *galleries, NSError * error) {
         if (!error){
-            [self.dataSource.galleries addObjectsFromArray:galleries];
+            //data persist with Realm
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            //persist all galleries to the disk
+            [realm transactionWithBlock:^{
+                [realm addOrUpdateObjects:galleries];
+            }];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.tableView reloadData];
+//            });
         }
     }];
 }
@@ -81,9 +88,11 @@
 }
 
 #pragma mark - Helper Functions
-
-
-
-
-
+- (void)setupRealmNotifications{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    self.realmNotificationToken = [realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
+        [self.tableView reloadData];
+    }];
+    
+}
 @end
