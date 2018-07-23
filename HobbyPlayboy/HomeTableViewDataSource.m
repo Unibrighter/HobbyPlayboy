@@ -43,6 +43,8 @@
     [cell.thumbnailImageView sd_setImageWithURL:[NSURL URLWithString:gallery.thumbnailURLStr]
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
+    cell.detailViewHeightConstraint.constant = [cell getDetailViewHeight];
+    
     //check if need to persist the expansion status of some cells if needed
     if ([self.detailViewExpandedIndexes containsObject:indexPath]){
         cell.detailContainerView.hidden = NO;

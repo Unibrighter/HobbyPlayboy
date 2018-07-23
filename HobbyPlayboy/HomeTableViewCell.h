@@ -36,4 +36,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewBottomPaddingHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeightConstraint;
 
+//TODO: change this into a now explicit method (selfAdjustConstraintIfNeede)
+- (CGFloat)getDetailViewHeight;
 @end

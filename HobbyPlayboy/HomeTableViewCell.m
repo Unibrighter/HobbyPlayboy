@@ -42,10 +42,6 @@
 - (IBAction)toggleDetailViewButtonTapped:(id)sender {
     UITableView *tableView = self.tableView;
     
-    self.detailViewHeightConstraint.constant = [self getDetailViewHeight];
-    [self.contentView setNeedsLayout];
-    [self.contentView layoutIfNeeded];
-    
     [tableView performBatchUpdates:^{
         self.detailContainerView.hidden = !self.detailContainerView.hidden;
     } completion:^(BOOL finished) {
@@ -54,6 +50,7 @@
     [self.detailViewToggleButton setTitle:self.detailContainerView.hidden?@"More":@"Collapse" forState:UIControlStateNormal];
     
     //inform the data source that this detail view has been expanded
+    //save it to the list for future reuse
     if (!self.detailContainerView.hidden){
         HomeTableViewDataSource *dataSource = (HomeTableViewDataSource *)tableView.dataSource;
         NSIndexPath *expandedIndex = [tableView indexPathForCell:self];
