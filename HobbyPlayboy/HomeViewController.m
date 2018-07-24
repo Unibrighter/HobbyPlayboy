@@ -11,6 +11,7 @@
 #import "HomeTableViewDataSource.h"
 #import "BrowserViewController.h"
 #import "Gallery.h"
+#import "BrowserCollectionViewDataSource.h"
 
 @interface HomeViewController ()
 @property (strong, nonatomic) RLMNotificationToken *realmNotificationToken;
@@ -75,11 +76,10 @@
     browserViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     browserViewController.modalPresentationStyle = UIModalPresentationFullScreen;
     
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).mainTabBarController presentViewController:browserViewController animated:YES completion:nil];
-    
     Gallery *gallery = (Gallery *)object;
-    browserViewController.titleLabel.text = gallery.rawTitle;
-    [browserViewController loadImagesIntoStackViewFromURLStrings:gallery.pages];
+    browserViewController.gallery = gallery;
+    
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).mainTabBarController presentViewController:browserViewController animated:YES completion:nil];
 }
 
 - (void)downloadGalleryWithGalleryId:(NSString *)galleryId{

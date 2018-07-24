@@ -64,5 +64,4 @@
     [tableView performSelectorViaResponderChain:@selector(selectGallery:) withObject:gallery];
 }
 
-
 @end

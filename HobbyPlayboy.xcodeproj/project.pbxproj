@@ -26,6 +26,9 @@
 		471BF92E20FDE89F00CB4376 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471BF92C20FDE89F00CB4376 /* HomeTableViewCell.xib */; };
 		471BF93120FE165C00CB4376 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF93020FE165C00CB4376 /* BrowserViewController.m */; };
 		471BF93420FEBCEF00CB4376 /* UIResponder+ResponderChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 471BF93320FEBCEF00CB4376 /* UIResponder+ResponderChain.m */; };
+		473A8F0D2106B3C3005F2689 /* BrowserCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 473A8F0C2106B3C3005F2689 /* BrowserCollectionViewDataSource.m */; };
+		473A8F112106C4D3005F2689 /* BrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 473A8F0F2106C4D3005F2689 /* BrowserCollectionViewCell.m */; };
+		473A8F122106C4D3005F2689 /* BrowserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473A8F102106C4D3005F2689 /* BrowserCollectionViewCell.xib */; };
 		9502DDD69083989F0D839F20 /* libPods-HobbyPlayboyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */; };
 		EA44C64433FF015ECCE8B465 /* libPods-HobbyPlayboy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */; };
 		EB7211819CEE2156F247D79B /* libPods-HobbyPlayboyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */; };
@@ -91,6 +94,11 @@
 		471BF93020FE165C00CB4376 /* BrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		471BF93220FEBCEF00CB4376 /* UIResponder+ResponderChain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+ResponderChain.h"; sourceTree = "<group>"; };
 		471BF93320FEBCEF00CB4376 /* UIResponder+ResponderChain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+ResponderChain.m"; sourceTree = "<group>"; };
+		473A8F0B2106B3C3005F2689 /* BrowserCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserCollectionViewDataSource.h; sourceTree = "<group>"; };
+		473A8F0C2106B3C3005F2689 /* BrowserCollectionViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserCollectionViewDataSource.m; sourceTree = "<group>"; };
+		473A8F0E2106C4D3005F2689 /* BrowserCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserCollectionViewCell.h; sourceTree = "<group>"; };
+		473A8F0F2106C4D3005F2689 /* BrowserCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserCollectionViewCell.m; sourceTree = "<group>"; };
+		473A8F102106C4D3005F2689 /* BrowserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserCollectionViewCell.xib; sourceTree = "<group>"; };
 		4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +250,8 @@
 			children = (
 				471BF92220FDE79C00CB4376 /* HomeTableViewDataSource.h */,
 				471BF92320FDE79C00CB4376 /* HomeTableViewDataSource.m */,
+				473A8F0B2106B3C3005F2689 /* BrowserCollectionViewDataSource.h */,
+				473A8F0C2106B3C3005F2689 /* BrowserCollectionViewDataSource.m */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -277,6 +287,9 @@
 				471BF92A20FDE89F00CB4376 /* HomeTableViewCell.h */,
 				471BF92B20FDE89F00CB4376 /* HomeTableViewCell.m */,
 				471BF92C20FDE89F00CB4376 /* HomeTableViewCell.xib */,
+				473A8F0E2106C4D3005F2689 /* BrowserCollectionViewCell.h */,
+				473A8F0F2106C4D3005F2689 /* BrowserCollectionViewCell.m */,
+				473A8F102106C4D3005F2689 /* BrowserCollectionViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -399,6 +412,7 @@
 			files = (
 				471BF8D720FC281600CB4376 /* LaunchScreen.storyboard in Resources */,
 				471BF8D420FC281600CB4376 /* Assets.xcassets in Resources */,
+				473A8F122106C4D3005F2689 /* BrowserCollectionViewCell.xib in Resources */,
 				471BF92E20FDE89F00CB4376 /* HomeTableViewCell.xib in Resources */,
 				471BF8D220FC281500CB4376 /* Main.storyboard in Resources */,
 			);
@@ -482,10 +496,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473A8F0D2106B3C3005F2689 /* BrowserCollectionViewDataSource.m in Sources */,
 				471BF8DA20FC281600CB4376 /* main.m in Sources */,
 				471BF90820FC470000CB4376 /* FavViewController.m in Sources */,
 				471BF92420FDE79C00CB4376 /* HomeTableViewDataSource.m in Sources */,
 				471BF93420FEBCEF00CB4376 /* UIResponder+ResponderChain.m in Sources */,
+				473A8F112106C4D3005F2689 /* BrowserCollectionViewCell.m in Sources */,
 				471BF92D20FDE89F00CB4376 /* HomeTableViewCell.m in Sources */,
 				471BF8FF20FC461A00CB4376 /* MainTabBarController.m in Sources */,
 				471BF93120FE165C00CB4376 /* BrowserViewController.m in Sources */,

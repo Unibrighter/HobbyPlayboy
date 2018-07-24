@@ -9,8 +9,10 @@
 #import "BrowserViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIView+WebCache.h>
+#import "BrowserCollectionViewDataSource.h"
+#import "Gallery.h"
 
-@interface BrowserViewController () <UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface BrowserViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) NSTimer *autoScrollTimer;
 @end
 
@@ -19,19 +21,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //TODO: use NSUserPreference to store the time interval option
-    self.autoScrollSwitch.on = self.autoScrollTimer.valid;
+    //data source and collection view
+    self.dataSource = [[BrowserCollectionViewDataSource alloc] init];
+    self.dataSource.gallery = self.gallery;
+    self.collectionView.delegate = self.dataSource;
+    self.collectionView.dataSource = self.dataSource;
+    [self.dataSource registerNibForCollectionView:self.collectionView];
+    ((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
     
-    self.headerView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
+    //title label
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.text = self.gallery.rawTitle;
     
+    //TODO: use NSUserPreference to store the time interval option
+    self.autoScrollSwitch.on = self.autoScrollTimer.valid;
+    self.headerView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
+
+    //footer view
     self.footerView.backgroundColor = [UIColor clearColor];
     self.currentPageIndexBackgroundOverlayView.backgroundColor = [UIColor grayColor];
     self.currentPageIndexBackgroundOverlayView.alpha = BACKGROUND_COLOR_ALPHA;
     [self setPagePickerViewHidden:YES animated:NO completion:nil];
     
-    self.scrollView.delegate = self;
+    //page index
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
     self.pageCount = 0;
     self.currentPageIndex = 0;
@@ -42,7 +55,8 @@
     //TODO: change this into the saved offset from last time
     [self.pagePickerView selectRow:self.currentPageIndex inComponent:0 animated:YES];
     
-    [self.stackView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
+    //gestures
+    [self.collectionView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
     [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
 }
 
@@ -50,30 +64,30 @@
     return YES;
 }
 
-- (void)loadImagesIntoStackViewFromURLStrings:(id <NSFastEnumeration>)URLStrings{
-    self.imageURLStrings = URLStrings;
-    
-    [self.activityIndicatorView startAnimating];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        for (NSString *URLStr in URLStrings) {
-            UIImageView *imageView = [[UIImageView alloc] init];
-            [imageView sd_setShowActivityIndicatorView:YES];
-            [imageView sd_showActivityIndicatorView];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:URLStr] placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                imageView.translatesAutoresizingMaskIntoConstraints = NO;
-                
-                CGFloat imageRatio = image.size.width/image.size.height;
-                NSLayoutConstraint *ratioConstraint = [NSLayoutConstraint constraintWithItem:imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeHeight multiplier:imageRatio constant:0];
-                
-                [imageView addConstraint:ratioConstraint];
-            }];
-            [self.stackView removeArrangedSubview:self.activityIndicatorView];
-            [self.stackView addArrangedSubview:imageView];
-        }
-        self.pageCount = [self getPageCountFromImageURLStrings:self.imageURLStrings];
-        self.currentPageIndex = 0;
-    });
-}
+//- (void)loadImagesIntoStackViewFromURLStrings:(id <NSFastEnumeration>)URLStrings{
+//    self.imageURLStrings = URLStrings;
+//
+//    [self.activityIndicatorView startAnimating];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        for (NSString *URLStr in URLStrings) {
+//            UIImageView *imageView = [[UIImageView alloc] init];
+//            [imageView sd_setShowActivityIndicatorView:YES];
+//            [imageView sd_showActivityIndicatorView];
+//            [imageView sd_setImageWithURL:[NSURL URLWithString:URLStr] placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//                imageView.translatesAutoresizingMaskIntoConstraints = NO;
+//
+//                CGFloat imageRatio = image.size.width/image.size.height;
+//                NSLayoutConstraint *ratioConstraint = [NSLayoutConstraint constraintWithItem:imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeHeight multiplier:imageRatio constant:0];
+//
+//                [imageView addConstraint:ratioConstraint];
+//            }];
+//            [self.stackView removeArrangedSubview:self.activityIndicatorView];
+//            [self.stackView addArrangedSubview:imageView];
+//        }
+//        self.pageCount = [self getPageCountFromImageURLStrings:self.imageURLStrings];
+//        self.currentPageIndex = 0;
+//    });
+//}
 
 #pragma mark - IBAction
 
@@ -115,7 +129,7 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return [self getPageCountFromImageURLStrings:self.imageURLStrings];
+    return self.dataSource.imageURLStrings.count;
 }
 
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
@@ -135,23 +149,23 @@
 }
 
 - (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
-    if (currentPageIndex < 0 || currentPageIndex >= self.pageCount){
-        NSLog(@"Invalid value for currentPageIndex.");
-        if (self.autoScrollTimer.valid){
-            [self.autoScrollTimer invalidate];
-        }
-        return;
-    }else{
-        _currentPageIndex = currentPageIndex;
-        
-        //update UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.pageCount];
-        });
-        CGRect targetRect = self.stackView.arrangedSubviews[self.currentPageIndex].frame;
-        targetRect.size.height = self.scrollView.frame.size.height;
-        [self.scrollView scrollRectToVisible:targetRect animated:YES];
-    }
+//    if (currentPageIndex < 0 || currentPageIndex >= self.pageCount){
+//        NSLog(@"Invalid value for currentPageIndex.");
+//        if (self.autoScrollTimer.valid){
+//            [self.autoScrollTimer invalidate];
+//        }
+//        return;
+//    }else{
+//        _currentPageIndex = currentPageIndex;
+//        
+//        //update UI
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.pageCount];
+//        });
+//        CGRect targetRect = self.stackView.arrangedSubviews[self.currentPageIndex].frame;
+//        targetRect.size.height = self.scrollView.frame.size.height;
+//        [self.scrollView scrollRectToVisible:targetRect animated:YES];
+//    }
 }
 
 - (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
@@ -246,12 +260,6 @@
     }];
 }
 
-- (NSInteger)getPageCountFromImageURLStrings:(id<NSFastEnumeration>)imageURLStrings{
-    NSInteger count = 0;
-    for (id obj in imageURLStrings){
-        count++;
-    }
-    return count;
-}
+
 
 @end
