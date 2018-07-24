@@ -10,6 +10,9 @@
 #import "UIResponder+ResponderChain.h"
 #import "HomeTableViewDataSource.h"
 
+#define CELL_MARGIN_OFFSET 16
+#define THUMBNAIL_IMAGE_VIEW_WEIDTH 88
+
 @implementation HomeTableViewCell
 
 - (void)awakeFromNib {
@@ -37,6 +40,7 @@
 
 - (void)updateDetailViewHeightConstraint{
     self.detailViewHeightConstraint.constant = [self getDetailViewHeight];
+//    self.detailViewHeightConstraint.constant = 280;
 }
 
 #pragma mark - IBAction
@@ -75,18 +79,21 @@
 
 - (CGFloat)getDetailViewHeight{
     //calculate the constraint dynamically
-    [self.tagsContentLabel sizeToFit];
-    [self.airTimeContentLabel sizeToFit];
-    [self.languageContentLabel sizeToFit];
-    [self.categoryContentLabel sizeToFit];
-
+    CGSize maximumLabelSize = CGSizeMake(SCREEN_WIDTH-CELL_MARGIN_OFFSET*2-THUMBNAIL_IMAGE_VIEW_WEIDTH,FLT_MAX);
+    UIFont *font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
+    
     CGFloat detailViewHeight =self.detailViewBottomPaddingHeightConstraint.constant+
-    CGRectGetHeight(self.tagsContentLabel.frame)+
-    CGRectGetHeight(self.airTimeContentLabel.frame)+
-    CGRectGetHeight(self.languageContentLabel.frame)+
-    CGRectGetHeight(self.categoryContentLabel.frame);
+    CGRectGetHeight([self getDesirableFrameForText:self.tagsContentLabel.text font:font boundingBox:maximumLabelSize])+
+    CGRectGetHeight([self getDesirableFrameForText:self.airTimeContentLabel.text font:font boundingBox:maximumLabelSize])+
+    CGRectGetHeight([self getDesirableFrameForText:self.languageContentLabel.text font:font boundingBox:maximumLabelSize])+
+    CGRectGetHeight([self getDesirableFrameForText:self.categoryContentLabel.text font:font boundingBox:maximumLabelSize]);
     
     return detailViewHeight;
+}
+
+- (CGRect)getDesirableFrameForText:(NSString *)text font:(UIFont *)font boundingBox:(CGSize)maximumSize{
+    CGRect frame = [text boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
+    return frame;
 }
 
 @end
