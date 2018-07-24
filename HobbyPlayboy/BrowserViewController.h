@@ -12,7 +12,6 @@
 
 @interface BrowserViewController : UIViewController
 
-@property (assign, nonatomic) NSInteger pageCount;
 @property (assign, nonatomic) NSInteger currentPageIndex;
 @property (assign, nonatomic) BOOL headerViewAndFooterViewHidden;
 
@@ -38,4 +37,5 @@
 @property (assign, nonatomic) BOOL pagePickerViewHidden;
 @property (weak, nonatomic) IBOutlet UIPickerView *pagePickerView;
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 @end

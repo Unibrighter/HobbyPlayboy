@@ -46,7 +46,6 @@
     
     //page index
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
-    self.pageCount = 0;
     self.currentPageIndex = 0;
     
     self.pageLabel.userInteractionEnabled = YES;
@@ -56,38 +55,13 @@
     [self.pagePickerView selectRow:self.currentPageIndex inComponent:0 animated:YES];
     
     //gestures
-    [self.collectionView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stackViewTapped:)]];
+    [self.collectionView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped:)]];
     [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
 }
 
 - (BOOL)prefersStatusBarHidden{
     return YES;
 }
-
-//- (void)loadImagesIntoStackViewFromURLStrings:(id <NSFastEnumeration>)URLStrings{
-//    self.imageURLStrings = URLStrings;
-//
-//    [self.activityIndicatorView startAnimating];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        for (NSString *URLStr in URLStrings) {
-//            UIImageView *imageView = [[UIImageView alloc] init];
-//            [imageView sd_setShowActivityIndicatorView:YES];
-//            [imageView sd_showActivityIndicatorView];
-//            [imageView sd_setImageWithURL:[NSURL URLWithString:URLStr] placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//                imageView.translatesAutoresizingMaskIntoConstraints = NO;
-//
-//                CGFloat imageRatio = image.size.width/image.size.height;
-//                NSLayoutConstraint *ratioConstraint = [NSLayoutConstraint constraintWithItem:imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imageView attribute:NSLayoutAttributeHeight multiplier:imageRatio constant:0];
-//
-//                [imageView addConstraint:ratioConstraint];
-//            }];
-//            [self.stackView removeArrangedSubview:self.activityIndicatorView];
-//            [self.stackView addArrangedSubview:imageView];
-//        }
-//        self.pageCount = [self getPageCountFromImageURLStrings:self.imageURLStrings];
-//        self.currentPageIndex = 0;
-//    });
-//}
 
 #pragma mark - IBAction
 
@@ -114,13 +88,30 @@
     NSInteger selectedIndex = [self.pagePickerView selectedRowInComponent:0];
     if (-1 != selectedIndex){
         self.currentPageIndex = selectedIndex;
+        NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:self.currentPageIndex inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
     }
     [self setPagePickerViewHidden:YES animated:YES completion:nil];
 }
 
-#pragma mark - ScrollView Delegate
+#pragma mark - Responder Chain
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:nil];
+    
+    if (!self.collectionView.indexPathsForVisibleItems || 0 == self.collectionView.indexPathsForVisibleItems.count){
+        return;
+    }
+    
+    //update the index
+    NSIndexPath *lastVisibleCellIndex = [self.collectionView.indexPathsForVisibleItems lastObject];
+    NSInteger offset = MAX((NSInteger)[self.collectionView.indexPathsForVisibleItems indexOfObject:lastVisibleCellIndex]-1,0);
+    NSIndexPath *secondlastVisibleCellIndex = self.collectionView.indexPathsForVisibleItems[offset];
+    if (0 == secondlastVisibleCellIndex.row && 0 == self.collectionView.contentOffset.y){
+        self.currentPageIndex = 0;
+    }else{
+        self.currentPageIndex = lastVisibleCellIndex.row;
+    }
+    
 }
 
 #pragma mark - Picker View Delegate
@@ -139,33 +130,33 @@
 #pragma mark - Helper Functions
 
 - (void)setupAutoScrollTimer{
-    //TODO: use NSUserPreference to store the time interval option
-    if (!self.autoScrollTimer || !self.autoScrollTimer.valid)
-    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+    if (!self.autoScrollTimer || !self.autoScrollTimer.valid){
+        //TODO: use NSUserPreference to store the time interval option
+        self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)scrollToNextPage{
     self.currentPageIndex++;
+    NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:self.currentPageIndex inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
 }
 
 - (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
-//    if (currentPageIndex < 0 || currentPageIndex >= self.pageCount){
-//        NSLog(@"Invalid value for currentPageIndex.");
-//        if (self.autoScrollTimer.valid){
-//            [self.autoScrollTimer invalidate];
-//        }
-//        return;
-//    }else{
-//        _currentPageIndex = currentPageIndex;
-//        
-//        //update UI
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.pageCount];
-//        });
-//        CGRect targetRect = self.stackView.arrangedSubviews[self.currentPageIndex].frame;
-//        targetRect.size.height = self.scrollView.frame.size.height;
-//        [self.scrollView scrollRectToVisible:targetRect animated:YES];
-//    }
+    if (currentPageIndex < 0 || currentPageIndex >= self.gallery.pageCount){
+        NSLog(@"Invalid value for currentPageIndex.");
+        if (self.autoScrollTimer.valid){
+            [self autoScrollSwitchValueChanged:nil];
+        }
+        return;
+    }else{
+        _currentPageIndex = currentPageIndex;
+        
+        //update UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
+        });
+    }
 }
 
 - (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
@@ -252,7 +243,7 @@
     [self setPagePickerViewHidden:NO animated:YES completion:nil];
 }
 
-- (void)stackViewTapped:(id)sender{
+- (void)collectionViewTapped:(id)sender{
     __weak typeof (self) weakSelf = self;
     
     [weakSelf setPagePickerViewHidden:YES animated:YES completion:^{

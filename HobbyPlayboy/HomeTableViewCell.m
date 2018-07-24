@@ -31,6 +31,7 @@
 
 - (void)prepareForReuse{
     [super prepareForReuse];
+    self.captionContainerView.autoresizingMask = UIViewAutoresizingNone;
     self.detailContainerView.hidden = YES;
 }
 

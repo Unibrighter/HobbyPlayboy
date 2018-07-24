@@ -12,8 +12,15 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Gallery.h"
 #import "BrowserCollectionViewCell.h"
+#import "UIResponder+ResponderChain.h"
 
 @implementation BrowserCollectionViewDataSource
+
+
+#pragma mark - Collection View Delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [scrollView performSelectorViaResponderChain:@selector(scrollViewDidScroll:) withObject:scrollView];
+}
 
 - (void)registerNibForCollectionView:(UICollectionView *)collectionView{
     [collectionView registerNib:[UINib nibWithNibName:[BrowserCollectionViewCell className] bundle:nil] forCellWithReuseIdentifier:[BrowserCollectionViewCell className]];

@@ -31,7 +31,9 @@
     [tableView registerNib:[UINib nibWithNibName:[HomeTableViewCell className] bundle:nil] forCellReuseIdentifier:[HomeTableViewCell className]];
 }
 
-#pragma mark - Table View Delegate
+#pragma mark - Collection View Delegate
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.galleries.count;
 }
