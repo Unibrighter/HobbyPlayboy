@@ -26,8 +26,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *autoScrollSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
-
+    
 //page select
+@property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIView *currentPageIndexView;
 @property (weak, nonatomic) IBOutlet UIView *currentPageIndexBackgroundOverlayView;

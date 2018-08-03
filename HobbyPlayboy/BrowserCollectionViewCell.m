@@ -16,7 +16,7 @@
     
     // Initialization code
     self.imageViewWidthConstraint.constant = SCREEN_WIDTH;
-    self.imageViewHeightConstraint.constant = SCREEN_HEIGHT;
+//    self.imageViewHeightConstraint.constant = SCREEN_HEIGHT;
 }
 
 @end

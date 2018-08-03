@@ -101,64 +101,41 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAU-ok-emd">
-                                <rect key="frame" x="0.0" y="407" width="375" height="260"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-dA-aPH">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEd-uY-GAS">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oa-u8-Ihl">
-                                                        <rect key="frame" x="16" y="7" width="48" height="30"/>
-                                                        <state key="normal" title="Cancel"/>
-                                                        <connections>
-                                                            <action selector="pagePickerCancelButtonTapped:" destination="DM4-y8-aES" eventType="touchUpInside" id="eln-dw-zoR"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdQ-jz-XKL">
-                                                        <rect key="frame" x="322" y="7" width="37" height="30"/>
-                                                        <state key="normal" title="Done"/>
-                                                        <connections>
-                                                            <action selector="pagePickerDoneButtonTapped:" destination="DM4-y8-aES" eventType="touchUpInside" id="0Q3-Hc-M3D"/>
-                                                        </connections>
-                                                    </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2g-5Q-n2L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                                    </view>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-pV-ZCJ">
+                                                        <rect key="frame" x="14" y="16" width="347" height="13"/>
+                                                    </slider>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-22-f0D">
-                                                        <rect key="frame" x="174.5" y="12" width="26" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="177" y="28" width="22" height="16"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="16" id="SJQ-kD-1iU"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="TdQ-jz-XKL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lcz-22-f0D" secondAttribute="trailing" constant="16" id="4oM-oO-pbo"/>
-                                                    <constraint firstItem="Lcz-22-f0D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0oa-u8-Ihl" secondAttribute="trailing" constant="16" id="6Nl-do-ant"/>
-                                                    <constraint firstAttribute="height" constant="44" id="8JS-Nu-DIx"/>
-                                                    <constraint firstItem="0oa-u8-Ihl" firstAttribute="leading" secondItem="nEd-uY-GAS" secondAttribute="leading" constant="16" id="9rd-aS-WxE"/>
-                                                    <constraint firstItem="V2g-5Q-n2L" firstAttribute="top" secondItem="nEd-uY-GAS" secondAttribute="top" id="A0J-Wv-3Ce"/>
-                                                    <constraint firstAttribute="trailing" secondItem="TdQ-jz-XKL" secondAttribute="trailing" constant="16" id="AcL-te-PQP"/>
-                                                    <constraint firstItem="V2g-5Q-n2L" firstAttribute="leading" secondItem="nEd-uY-GAS" secondAttribute="leading" id="JPC-5O-3hT"/>
+                                                    <constraint firstItem="Lcz-22-f0D" firstAttribute="top" secondItem="Fuf-pV-ZCJ" secondAttribute="bottom" id="1gF-Or-g0l"/>
+                                                    <constraint firstItem="Fuf-pV-ZCJ" firstAttribute="top" secondItem="nEd-uY-GAS" secondAttribute="top" constant="16" id="4fu-6X-C38"/>
+                                                    <constraint firstAttribute="height" constant="60" id="8JS-Nu-DIx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Fuf-pV-ZCJ" secondAttribute="trailing" constant="16" id="9ct-U0-IMm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Lcz-22-f0D" secondAttribute="bottom" constant="16" id="NGZ-vh-73H"/>
+                                                    <constraint firstItem="Fuf-pV-ZCJ" firstAttribute="leading" secondItem="nEd-uY-GAS" secondAttribute="leading" constant="16" id="Pkl-Yf-2IR"/>
                                                     <constraint firstItem="Lcz-22-f0D" firstAttribute="centerX" secondItem="nEd-uY-GAS" secondAttribute="centerX" id="bV3-Nj-mlW"/>
-                                                    <constraint firstItem="TdQ-jz-XKL" firstAttribute="centerY" secondItem="nEd-uY-GAS" secondAttribute="centerY" id="f2j-ac-kPT"/>
-                                                    <constraint firstItem="Lcz-22-f0D" firstAttribute="centerY" secondItem="nEd-uY-GAS" secondAttribute="centerY" id="o3i-v3-vjH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="V2g-5Q-n2L" secondAttribute="trailing" id="qGx-If-pr0"/>
-                                                    <constraint firstItem="0oa-u8-Ihl" firstAttribute="centerY" secondItem="nEd-uY-GAS" secondAttribute="centerY" id="sWh-8m-oWc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="V2g-5Q-n2L" secondAttribute="bottom" id="xyH-Qe-NAl"/>
                                                 </constraints>
                                             </view>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13i-3q-Ags">
-                                                <rect key="frame" x="0.0" y="44" width="375" height="216"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </pickerView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="nEd-uY-GAS" firstAttribute="leading" secondItem="cUY-dA-aPH" secondAttribute="leading" id="0y1-cb-TPf"/>
-                                            <constraint firstItem="13i-3q-Ags" firstAttribute="leading" secondItem="cUY-dA-aPH" secondAttribute="leading" id="Kdb-oC-Eaj"/>
                                             <constraint firstAttribute="trailing" secondItem="nEd-uY-GAS" secondAttribute="trailing" id="fyA-20-TbG"/>
-                                            <constraint firstAttribute="trailing" secondItem="13i-3q-Ags" secondAttribute="trailing" id="m8k-Kk-qBQ"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -190,14 +167,11 @@
                         <outlet property="autoScrollSwitch" destination="ByN-rH-azU" id="27A-rE-xgH"/>
                         <outlet property="backButton" destination="rJi-Qp-ECP" id="zNr-fO-Ri5"/>
                         <outlet property="collectionView" destination="mho-9u-2NJ" id="SIf-Go-VDA"/>
-                        <outlet property="currentPageIndexBackgroundOverlayView" destination="V2g-5Q-n2L" id="mM9-BQ-fcJ"/>
                         <outlet property="currentPageIndexView" destination="nEd-uY-GAS" id="klp-P9-nev"/>
                         <outlet property="footerView" destination="GAU-ok-emd" id="48u-OH-sTv"/>
                         <outlet property="headerView" destination="hZx-of-K9c" id="TGC-Hd-Y20"/>
                         <outlet property="pageLabel" destination="Lcz-22-f0D" id="SoL-uU-KXp"/>
-                        <outlet property="pagePickerCancelButton" destination="0oa-u8-Ihl" id="Buq-e8-7iq"/>
-                        <outlet property="pagePickerDoneButton" destination="TdQ-jz-XKL" id="6AO-x3-cpk"/>
-                        <outlet property="pagePickerView" destination="13i-3q-Ags" id="5HB-F1-dye"/>
+                        <outlet property="slider" destination="Fuf-pV-ZCJ" id="det-wN-7yd"/>
                         <outlet property="titleLabel" destination="CLl-Ad-tno" id="ZU4-mS-LD3"/>
                     </connections>
                 </viewController>
