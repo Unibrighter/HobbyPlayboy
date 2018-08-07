@@ -12,7 +12,7 @@
 #import "BrowserCollectionViewDataSource.h"
 #import "Gallery.h"
 
-@interface BrowserViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface BrowserViewController ()
 @property (strong, nonatomic) NSTimer *autoScrollTimer;
 @end
 
@@ -84,19 +84,6 @@
         self.currentPageIndex = lastVisibleCellIndex.row;
     }
     
-}
-
-#pragma mark - Picker View Delegate
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return self.dataSource.imageURLStrings.count;
-}
-
-- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [@(row+1) stringValue];
 }
 
 #pragma mark - Helper Functions
