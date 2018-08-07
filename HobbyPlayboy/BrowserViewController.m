@@ -40,19 +40,16 @@
 
     //footer view
     self.footerView.backgroundColor = [UIColor clearColor];
-    self.currentPageIndexBackgroundOverlayView.backgroundColor = [UIColor grayColor];
-    self.currentPageIndexBackgroundOverlayView.alpha = BACKGROUND_COLOR_ALPHA;
-    [self setPagePickerViewHidden:YES animated:NO completion:nil];
+    self.popoverIndicatorView.hidden = YES;
     
     //page index
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
     self.currentPageIndex = 0;
     
     self.pageLabel.userInteractionEnabled = YES;
-    self.pagePickerView.delegate = self;
     
-    //TODO: change this into the saved offset from last time
-    [self.pagePickerView selectRow:self.currentPageIndex inComponent:0 animated:YES];
+    //TODO: change this into a category method
+    [self.slider setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateNormal];
     
     //gestures
     [self.collectionView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped:)]];
@@ -71,27 +68,6 @@
     }else{
         [self.autoScrollTimer invalidate];
     }
-}
-
-- (IBAction)backButtonTapped:(id)sender {
-    __weak typeof(self) weakSelf = self;
-    [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:^{
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    }];
-}
-
-- (IBAction)pagePickerCancelButtonTapped:(id)sender {
-    [self setPagePickerViewHidden:YES animated:YES completion:nil];
-}
-
-- (IBAction)pagePickerDoneButtonTapped:(id)sender {
-    NSInteger selectedIndex = [self.pagePickerView selectedRowInComponent:0];
-    if (-1 != selectedIndex){
-        self.currentPageIndex = selectedIndex;
-        NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:self.currentPageIndex inSection:0];
-        [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
-    }
-    [self setPagePickerViewHidden:YES animated:YES completion:nil];
 }
 
 #pragma mark - Responder Chain
@@ -128,7 +104,7 @@
 }
 
 #pragma mark - Helper Functions
-
+    
 - (void)setupAutoScrollTimer{
     if (!self.autoScrollTimer || !self.autoScrollTimer.valid){
         //TODO: use NSUserPreference to store the time interval option
@@ -156,44 +132,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
         });
-    }
-}
-
-- (void)setPagePickerViewHidden:(BOOL)pagePickerViewHidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
-    void (^ viewUpdateBlock)(void) = ^ (void){
-        //when not picking a page num, we need to set the background color of the pageLabel half transparent
-        self.currentPageIndexBackgroundOverlayView.alpha = pagePickerViewHidden?BACKGROUND_COLOR_ALPHA:1.0;
-        [self.currentPageIndexView bringSubviewToFront:self.pagePickerCancelButton];
-        [self.currentPageIndexView bringSubviewToFront:self.pagePickerDoneButton];
-        CGFloat alpha = pagePickerViewHidden?0.0:1.0;
-        
-        self.pagePickerCancelButton.alpha = alpha;
-        self.pagePickerDoneButton.alpha = alpha;
-        self.pagePickerView.alpha = alpha;
-        
-        self.pagePickerView.hidden = pagePickerViewHidden;
-        if (!self.pagePickerView.hidden){
-            [self.pagePickerView selectRow:self.currentPageIndex inComponent:0 animated:NO];
-        }
-        [self.footerView setNeedsLayout];
-        [self.footerView layoutIfNeeded];
-    };
-    
-    if (animated){
-        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-            viewUpdateBlock();
-        } completion:^(BOOL finished) {
-            if (completionBlock){
-                self.pagePickerViewHidden = pagePickerViewHidden;
-                completionBlock();
-            }
-        }];
-    }else{
-        viewUpdateBlock();
-        if (completionBlock){
-            self.pagePickerViewHidden = pagePickerViewHidden;
-            completionBlock();
-        }
     }
 }
 
@@ -239,18 +177,10 @@
 
 #pragma mark - EventHandler
 
-- (void)pageLabelTapped:(id)sender{
-    [self setPagePickerViewHidden:NO animated:YES completion:nil];
-}
-
 - (void)collectionViewTapped:(id)sender{
     __weak typeof (self) weakSelf = self;
     
-    [weakSelf setPagePickerViewHidden:YES animated:YES completion:^{
-        [self setHeaderViewAndFooterViewHidden:!self.headerViewAndFooterViewHidden animated:YES completion:nil];
-    }];
+    [weakSelf setHeaderViewAndFooterViewHidden:!weakSelf.headerViewAndFooterViewHidden animated:YES completion:nil];
 }
-
-
 
 @end

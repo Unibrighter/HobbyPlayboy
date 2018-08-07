@@ -103,48 +103,49 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GAU-ok-emd">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-dA-aPH">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-vR-pF6">
+                                        <rect key="frame" x="67" y="-144" width="240" height="128"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="Dkl-Xr-ynM"/>
+                                            <constraint firstAttribute="height" constant="128" id="TYp-qt-5ib"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEd-uY-GAS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEd-uY-GAS">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                                <subviews>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-pV-ZCJ">
-                                                        <rect key="frame" x="14" y="16" width="347" height="13"/>
-                                                    </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-22-f0D">
-                                                        <rect key="frame" x="177" y="28" width="22" height="16"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="SJQ-kD-1iU"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-pV-ZCJ">
+                                                <rect key="frame" x="14" y="16" width="347" height="13"/>
+                                            </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-22-f0D">
+                                                <rect key="frame" x="178.5" y="28" width="19.5" height="16"/>
                                                 <constraints>
-                                                    <constraint firstItem="Lcz-22-f0D" firstAttribute="top" secondItem="Fuf-pV-ZCJ" secondAttribute="bottom" id="1gF-Or-g0l"/>
-                                                    <constraint firstItem="Fuf-pV-ZCJ" firstAttribute="top" secondItem="nEd-uY-GAS" secondAttribute="top" constant="16" id="4fu-6X-C38"/>
-                                                    <constraint firstAttribute="height" constant="60" id="8JS-Nu-DIx"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Fuf-pV-ZCJ" secondAttribute="trailing" constant="16" id="9ct-U0-IMm"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Lcz-22-f0D" secondAttribute="bottom" constant="16" id="NGZ-vh-73H"/>
-                                                    <constraint firstItem="Fuf-pV-ZCJ" firstAttribute="leading" secondItem="nEd-uY-GAS" secondAttribute="leading" constant="16" id="Pkl-Yf-2IR"/>
-                                                    <constraint firstItem="Lcz-22-f0D" firstAttribute="centerX" secondItem="nEd-uY-GAS" secondAttribute="centerX" id="bV3-Nj-mlW"/>
+                                                    <constraint firstAttribute="height" constant="16" id="SJQ-kD-1iU"/>
                                                 </constraints>
-                                            </view>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="nEd-uY-GAS" firstAttribute="leading" secondItem="cUY-dA-aPH" secondAttribute="leading" id="0y1-cb-TPf"/>
-                                            <constraint firstAttribute="trailing" secondItem="nEd-uY-GAS" secondAttribute="trailing" id="fyA-20-TbG"/>
+                                            <constraint firstItem="Lcz-22-f0D" firstAttribute="top" secondItem="Fuf-pV-ZCJ" secondAttribute="bottom" id="1gF-Or-g0l"/>
+                                            <constraint firstItem="Fuf-pV-ZCJ" firstAttribute="top" secondItem="nEd-uY-GAS" secondAttribute="top" constant="16" id="4fu-6X-C38"/>
+                                            <constraint firstAttribute="height" constant="60" id="8JS-Nu-DIx"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fuf-pV-ZCJ" secondAttribute="trailing" constant="16" id="9ct-U0-IMm"/>
+                                            <constraint firstAttribute="bottom" secondItem="Lcz-22-f0D" secondAttribute="bottom" constant="16" id="NGZ-vh-73H"/>
+                                            <constraint firstItem="Fuf-pV-ZCJ" firstAttribute="leading" secondItem="nEd-uY-GAS" secondAttribute="leading" constant="16" id="Pkl-Yf-2IR"/>
+                                            <constraint firstItem="Lcz-22-f0D" firstAttribute="centerX" secondItem="nEd-uY-GAS" secondAttribute="centerX" id="bV3-Nj-mlW"/>
                                         </constraints>
-                                    </stackView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="cUY-dA-aPH" firstAttribute="leading" secondItem="GAU-ok-emd" secondAttribute="leading" id="0tg-ts-45C"/>
-                                    <constraint firstAttribute="bottom" secondItem="cUY-dA-aPH" secondAttribute="bottom" id="QN1-v4-yDn"/>
-                                    <constraint firstItem="cUY-dA-aPH" firstAttribute="top" secondItem="GAU-ok-emd" secondAttribute="top" id="mut-a5-vBx"/>
-                                    <constraint firstAttribute="trailing" secondItem="cUY-dA-aPH" secondAttribute="trailing" id="no4-Ld-FVE"/>
+                                    <constraint firstAttribute="top" secondItem="Dja-vR-pF6" secondAttribute="bottom" constant="16" id="C1i-LB-Jz0"/>
+                                    <constraint firstAttribute="bottom" secondItem="nEd-uY-GAS" secondAttribute="bottom" id="DSj-8f-NxM"/>
+                                    <constraint firstAttribute="trailing" secondItem="nEd-uY-GAS" secondAttribute="trailing" id="DxT-Fb-kSK"/>
+                                    <constraint firstItem="nEd-uY-GAS" firstAttribute="leading" secondItem="GAU-ok-emd" secondAttribute="leading" id="PNB-di-gpE"/>
+                                    <constraint firstItem="nEd-uY-GAS" firstAttribute="top" secondItem="GAU-ok-emd" secondAttribute="top" id="c6w-J0-6c2"/>
+                                    <constraint firstItem="Dja-vR-pF6" firstAttribute="centerX" secondItem="GAU-ok-emd" secondAttribute="centerX" id="cKE-Am-tBs"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -171,6 +172,7 @@
                         <outlet property="footerView" destination="GAU-ok-emd" id="48u-OH-sTv"/>
                         <outlet property="headerView" destination="hZx-of-K9c" id="TGC-Hd-Y20"/>
                         <outlet property="pageLabel" destination="Lcz-22-f0D" id="SoL-uU-KXp"/>
+                        <outlet property="popoverIndicatorView" destination="Dja-vR-pF6" id="W8b-dj-Za8"/>
                         <outlet property="slider" destination="Fuf-pV-ZCJ" id="det-wN-7yd"/>
                         <outlet property="titleLabel" destination="CLl-Ad-tno" id="ZU4-mS-LD3"/>
                     </connections>

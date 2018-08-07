@@ -31,12 +31,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet UIView *currentPageIndexView;
-@property (weak, nonatomic) IBOutlet UIView *currentPageIndexBackgroundOverlayView;
+@property (weak, nonatomic) IBOutlet UIView *popoverIndicatorView;
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;
-@property (weak, nonatomic) IBOutlet UIButton *pagePickerCancelButton;
-@property (weak, nonatomic) IBOutlet UIButton *pagePickerDoneButton;
-@property (assign, nonatomic) BOOL pagePickerViewHidden;
-@property (weak, nonatomic) IBOutlet UIPickerView *pagePickerView;
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 @end
