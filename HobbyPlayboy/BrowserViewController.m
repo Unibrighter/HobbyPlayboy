@@ -46,14 +46,10 @@
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
     self.currentPageIndex = 0;
     
-    self.pageLabel.userInteractionEnabled = YES;
-    
-    //TODO: change this into a category method
     [self.slider setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateNormal];
     
     //gestures
     [self.collectionView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionViewTapped:)]];
-    [self.pageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pageLabelTapped:)]];
 }
 
 - (BOOL)prefersStatusBarHidden{
