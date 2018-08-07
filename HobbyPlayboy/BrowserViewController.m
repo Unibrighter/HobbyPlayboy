@@ -41,10 +41,16 @@
     //footer view
     self.footerView.backgroundColor = [UIColor clearColor];
     self.popoverIndicatorView.hidden = YES;
+    self.popoverIndicatorView.alpha = 0.6;
+    self.popoverIndicatorView.layer.cornerRadius = 4.0;
+    
+    self.slider.maximumValue = self.gallery.pageCount+1;
+    self.slider.minimumValue = 1;
     
     //page index
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
     self.currentPageIndex = 0;
+    self.slider.value = self.currentPageIndex+1;
     
     [self.slider setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateNormal];
     
@@ -57,6 +63,12 @@
 }
 
 #pragma mark - IBAction
+- (IBAction)backButtonTapped:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:^{
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
 
 - (IBAction)autoScrollSwitchValueChanged:(id)sender {
     if (self.autoScrollSwitch.on){
@@ -65,10 +77,36 @@
         [self.autoScrollTimer invalidate];
     }
 }
+    
+- (IBAction)onSliderTouchedDown:(id)sender {
+    self.popoverIndicatorView.hidden = NO;
+}
+    
+- (IBAction)onSliderTouchedUpInside:(id)sender {
+    self.popoverIndicatorView.hidden = YES;
+    
+    UISlider *slider = (UISlider *)sender;
+    NSInteger currentPageIndex = (NSInteger)slider.value;
+    
+    self.currentPageIndex = currentPageIndex;
+    [self scrollToCurrentPageWithAnimation:NO];
+}
 
+- (IBAction)onSliderTouchOutsideChanged:(id)sender {
+    self.popoverIndicatorView.hidden = YES;
+    
+    UISlider *slider = (UISlider *)sender;
+    NSInteger currentPageIndex = (NSInteger)slider.value;
+    
+    self.currentPageIndex = currentPageIndex;
+    [self scrollToCurrentPageWithAnimation:NO];
+    
+}
+    
+    
 #pragma mark - Responder Chain
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:nil];
+//    [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:nil];
     
     if (!self.collectionView.indexPathsForVisibleItems || 0 == self.collectionView.indexPathsForVisibleItems.count){
         return;
@@ -97,10 +135,11 @@
 
 - (void)scrollToNextPage{
     self.currentPageIndex++;
-    NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:self.currentPageIndex inSection:0];
-    [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    [self scrollToCurrentPageWithAnimation:YES];
 }
 
+//This method will only set the text, slider value and the property value of the viewController
+// It won't update the collection view'position
 - (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
     if (currentPageIndex < 0 || currentPageIndex >= self.gallery.pageCount){
         NSLog(@"Invalid value for currentPageIndex.");
@@ -116,6 +155,11 @@
             self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
         });
     }
+}
+    
+- (void)scrollToCurrentPageWithAnimation:(BOOL)animated{
+    NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:self.currentPageIndex inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
 }
 
 - (void)setHeaderViewAndFooterViewHidden:(BOOL)hidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
@@ -157,6 +201,8 @@
         }
     }
 }
+    
+
 
 #pragma mark - EventHandler
 
