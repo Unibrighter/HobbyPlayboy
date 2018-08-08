@@ -99,6 +99,7 @@
 		473A8F0E2106C4D3005F2689 /* BrowserCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserCollectionViewCell.h; sourceTree = "<group>"; };
 		473A8F0F2106C4D3005F2689 /* BrowserCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserCollectionViewCell.m; sourceTree = "<group>"; };
 		473A8F102106C4D3005F2689 /* BrowserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserCollectionViewCell.xib; sourceTree = "<group>"; };
+		476E2FCC211AB93700075CD0 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		4C7DCD42F96D45E47BA49658 /* libPods-HobbyPlayboy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFC876BDB043937EA342DAF /* libPods-HobbyPlayboyUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B719813964D5DE1CAF91C93 /* libPods-HobbyPlayboyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HobbyPlayboyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				471BF90E20FC4E5200CB4376 /* HobbyPlayboyPrefixHeader.pch */,
+				476E2FCC211AB93700075CD0 /* Config.h */,
 			);
 			name = Config;
 			sourceTree = "<group>";

@@ -117,9 +117,9 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fuf-pV-ZCJ">
                                                 <rect key="frame" x="14" y="16" width="347" height="13"/>
                                                 <connections>
-                                                    <action selector="onSliderTouchOutsideChanged:" destination="DM4-y8-aES" eventType="touchUpOutside" id="Rvi-5r-R63"/>
+                                                    <action selector="onSliderTouchUpInside:" destination="DM4-y8-aES" eventType="touchUpInside" id="QGB-Ya-epX"/>
+                                                    <action selector="onSliderTouchUpOutside:" destination="DM4-y8-aES" eventType="touchUpOutside" id="QIJ-Yj-KMU"/>
                                                     <action selector="onSliderTouchedDown:" destination="DM4-y8-aES" eventType="touchDown" id="wPs-Dj-chb"/>
-                                                    <action selector="onSliderTouchedUpInside:" destination="DM4-y8-aES" eventType="touchUpInside" id="RCl-U1-hR9"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-22-f0D">

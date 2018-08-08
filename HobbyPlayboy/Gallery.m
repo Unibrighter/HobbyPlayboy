@@ -64,7 +64,6 @@
         NSString *thumbnailURLStr = [NSString stringWithFormat:@"http://fchost1.imgscloud.com/s/hcshort/hc%ld.jpg", galleryIdAdjusted];
         self.thumbnailURLStr = thumbnailURLStr;
         
-        //TODO: fix this
         self.pages = [self getPagesWithGalleryId:self.galleryId pageCount:self.pageCount];
     }
 }

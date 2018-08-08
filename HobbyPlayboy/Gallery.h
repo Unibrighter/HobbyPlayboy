@@ -16,7 +16,6 @@
 @property NSString *referenceURLStr;
 @property NSString *thumbnailURLStr;
 
-//TODO: this needs to be expanded into two separate arraies
 @property RLMArray <RLMString> *pages;
 @property NSString *rawTitle;
 @property NSInteger pageCount;

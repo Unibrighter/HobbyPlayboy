@@ -44,7 +44,7 @@
     self.popoverIndicatorView.alpha = 0.6;
     self.popoverIndicatorView.layer.cornerRadius = 4.0;
     
-    self.slider.maximumValue = self.gallery.pageCount+1;
+    self.slider.maximumValue = self.gallery.pageCount;
     self.slider.minimumValue = 1;
     
     //page index
@@ -82,25 +82,18 @@
     self.popoverIndicatorView.hidden = NO;
 }
     
-- (IBAction)onSliderTouchedUpInside:(id)sender {
+- (IBAction)onSliderTouchUpInside:(id)sender {
     self.popoverIndicatorView.hidden = YES;
     
     UISlider *slider = (UISlider *)sender;
-    NSInteger currentPageIndex = (NSInteger)slider.value;
+    NSInteger currentPageIndex = (NSInteger)slider.value-1;
     
     self.currentPageIndex = currentPageIndex;
     [self scrollToCurrentPageWithAnimation:NO];
 }
 
-- (IBAction)onSliderTouchOutsideChanged:(id)sender {
-    self.popoverIndicatorView.hidden = YES;
-    
-    UISlider *slider = (UISlider *)sender;
-    NSInteger currentPageIndex = (NSInteger)slider.value;
-    
-    self.currentPageIndex = currentPageIndex;
-    [self scrollToCurrentPageWithAnimation:NO];
-    
+- (IBAction)onSliderTouchUpOutside:(id)sender {
+    [self onSliderTouchUpInside:sender];
 }
     
     
@@ -113,14 +106,15 @@
     }
     
     //update the index
-    NSIndexPath *lastVisibleCellIndex = [self.collectionView.indexPathsForVisibleItems lastObject];
-    NSInteger offset = MAX((NSInteger)[self.collectionView.indexPathsForVisibleItems indexOfObject:lastVisibleCellIndex]-1,0);
-    NSIndexPath *secondlastVisibleCellIndex = self.collectionView.indexPathsForVisibleItems[offset];
-    if (0 == secondlastVisibleCellIndex.row && 0 == self.collectionView.contentOffset.y){
-        self.currentPageIndex = 0;
-    }else{
-        self.currentPageIndex = lastVisibleCellIndex.row;
-    }
+//    NSIndexPath *lastVisibleCellIndex = [self.collectionView.indexPathsForVisibleItems lastObject];
+//    NSInteger offset = MAX((NSInteger)[self.collectionView.indexPathsForVisibleItems indexOfObject:lastVisibleCellIndex]-1,0);
+//    NSIndexPath *secondlastVisibleCellIndex = self.collectionView.indexPathsForVisibleItems[offset];
+//    if (0 == secondlastVisibleCellIndex.row && 0 == self.collectionView.contentOffset.y){
+//        self.currentPageIndex = 0;
+//    }else{
+//        self.currentPageIndex = lastVisibleCellIndex.row;
+//        self.slider.value = self.currentPageIndex;
+//    }
     
 }
 
@@ -141,7 +135,7 @@
 //This method will only set the text, slider value and the property value of the viewController
 // It won't update the collection view'position
 - (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
-    if (currentPageIndex < 0 || currentPageIndex >= self.gallery.pageCount){
+    if (currentPageIndex < 0 || currentPageIndex > self.gallery.pageCount){
         NSLog(@"Invalid value for currentPageIndex.");
         if (self.autoScrollTimer.valid){
             [self autoScrollSwitchValueChanged:nil];
@@ -153,6 +147,7 @@
         //update UI
         dispatch_async(dispatch_get_main_queue(), ^{
             self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
+            self.slider.value = self.currentPageIndex+1;
         });
     }
 }
@@ -163,8 +158,8 @@
 }
 
 - (void)setHeaderViewAndFooterViewHidden:(BOOL)hidden animated:(BOOL)animated completion:(void (^)(void))completionBlock{
-    if (!(self.headerViewAndFooterViewHidden ^ hidden)){
-        //TODO: if not setting this, it seems that the animation will carried out anyway. Causing UI inconsistance issues
+    if (self.headerViewAndFooterViewHidden == hidden){
+        //if not setting this, it seems that the animation will carried out anyway. Causing UI inconsistance issues
         //already the same, no action needed
         return;
     }

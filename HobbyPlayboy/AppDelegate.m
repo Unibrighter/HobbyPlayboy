@@ -17,8 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //TODO: add debug marcro here
+#if DEBUG_LEVEL != DEBUG_LEVEL_NONE
     NSLog([[RLMRealmConfiguration defaultConfiguration].fileURL absoluteString]);
+#endif
     
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.mainTabBarController = [[MainTabBarController alloc] init];;
