@@ -46,11 +46,10 @@
     
     self.slider.maximumValue = self.gallery.pageCount;
     self.slider.minimumValue = 1;
+    self.slider.value = self.slider.minimumValue;
     
     //page index
     [self setHeaderViewAndFooterViewHidden:YES animated:NO completion:nil];
-    self.currentPageIndex = 0;
-    self.slider.value = self.currentPageIndex+1;
     
     [self.slider setThumbImage:[UIImage imageNamed:@"sliderThumb"] forState:UIControlStateNormal];
     
@@ -88,8 +87,7 @@
     UISlider *slider = (UISlider *)sender;
     NSInteger currentPageIndex = (NSInteger)slider.value-1;
     
-    self.currentPageIndex = currentPageIndex;
-    [self scrollToCurrentPageWithAnimation:NO];
+    [self scrollToPageAtIndex:currentPageIndex withAnimation:NO];
 }
 
 - (IBAction)onSliderTouchUpOutside:(id)sender {
@@ -99,23 +97,10 @@
     
 #pragma mark - Responder Chain
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    [self setHeaderViewAndFooterViewHidden:YES animated:YES completion:nil];
-    
     if (!self.collectionView.indexPathsForVisibleItems || 0 == self.collectionView.indexPathsForVisibleItems.count){
         return;
     }
-    
-    //update the index
-//    NSIndexPath *lastVisibleCellIndex = [self.collectionView.indexPathsForVisibleItems lastObject];
-//    NSInteger offset = MAX((NSInteger)[self.collectionView.indexPathsForVisibleItems indexOfObject:lastVisibleCellIndex]-1,0);
-//    NSIndexPath *secondlastVisibleCellIndex = self.collectionView.indexPathsForVisibleItems[offset];
-//    if (0 == secondlastVisibleCellIndex.row && 0 == self.collectionView.contentOffset.y){
-//        self.currentPageIndex = 0;
-//    }else{
-//        self.currentPageIndex = lastVisibleCellIndex.row;
-//        self.slider.value = self.currentPageIndex;
-//    }
-    
+    [self updateLabelTextAndSliderValue];
 }
 
 #pragma mark - Helper Functions
@@ -128,32 +113,30 @@
 }
 
 - (void)scrollToNextPage{
-    self.currentPageIndex++;
-    [self scrollToCurrentPageWithAnimation:YES];
+    [self scrollToPageAtIndex:self.currentPageIndex+1 withAnimation:YES];
 }
-
-//This method will only set the text, slider value and the property value of the viewController
-// It won't update the collection view'position
-- (void)setCurrentPageIndex:(NSInteger)currentPageIndex{
-    if (currentPageIndex < 0 || currentPageIndex > self.gallery.pageCount){
-        NSLog(@"Invalid value for currentPageIndex.");
-        if (self.autoScrollTimer.valid){
-            [self autoScrollSwitchValueChanged:nil];
-        }
-        return;
+    
+- (void)updateLabelTextAndSliderValue{
+    //update UI
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
+        self.slider.value = self.currentPageIndex+1;
+    });
+}
+    
+- (NSInteger)currentPageIndex{
+    NSIndexPath *lastVisibleCellIndex = [self.collectionView.indexPathsForVisibleItems lastObject];
+    NSInteger offset = MAX((NSInteger)[self.collectionView.indexPathsForVisibleItems indexOfObject:lastVisibleCellIndex]-1,0);
+    NSIndexPath *secondlastVisibleCellIndex = self.collectionView.indexPathsForVisibleItems[offset];
+    if (0 == secondlastVisibleCellIndex.row && 0 == self.collectionView.contentOffset.y){
+        return 0;
     }else{
-        _currentPageIndex = currentPageIndex;
-        
-        //update UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
-            self.slider.value = self.currentPageIndex+1;
-        });
+        return lastVisibleCellIndex.row;
     }
 }
     
-- (void)scrollToCurrentPageWithAnimation:(BOOL)animated{
-    NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:self.currentPageIndex inSection:0];
+- (void)scrollToPageAtIndex:(NSInteger)index withAnimation:(BOOL)animated{
+    NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
     [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
 }
 

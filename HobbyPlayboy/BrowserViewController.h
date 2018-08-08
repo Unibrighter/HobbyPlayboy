@@ -12,7 +12,7 @@
 
 @interface BrowserViewController : UIViewController
 
-@property (assign, nonatomic) NSInteger currentPageIndex;
+@property (assign, nonatomic, readonly) NSInteger currentPageIndex;
 @property (assign, nonatomic) BOOL headerViewAndFooterViewHidden;
 
 @property (strong, nonatomic) Gallery *gallery;
