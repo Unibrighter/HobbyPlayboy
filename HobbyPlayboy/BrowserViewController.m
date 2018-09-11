@@ -41,6 +41,7 @@
     //footer view
     self.footerView.backgroundColor = [UIColor clearColor];
     self.popoverIndicatorView.hidden = YES;
+    //TODO: use macro to controll the universal setting here
     self.popoverIndicatorView.alpha = 0.6;
     self.popoverIndicatorView.layer.cornerRadius = 4.0;
     
@@ -125,17 +126,33 @@
 }
     
 - (NSInteger)currentPageIndex{
-    NSIndexPath *lastVisibleCellIndex = [self.collectionView.indexPathsForVisibleItems lastObject];
-    NSInteger offset = MAX((NSInteger)[self.collectionView.indexPathsForVisibleItems indexOfObject:lastVisibleCellIndex]-1,0);
-    NSIndexPath *secondlastVisibleCellIndex = self.collectionView.indexPathsForVisibleItems[offset];
-    if (0 == secondlastVisibleCellIndex.row && 0 == self.collectionView.contentOffset.y){
+    //check if the collection view is at most top - first page
+    if (0 == (NSInteger)self.collectionView.contentOffset.y){
         return 0;
+    }
+    
+    //check if the collection view is at most bottom - last page
+    if ((self.collectionView.contentOffset.y + CGRectGetHeight(self.collectionView.frame)) >= self.collectionView.contentSize.height){
+        return MAX(self.dataSource.gallery.pages.count-1, 0);
+    }
+    
+    //normal situation: the second visible one
+    NSIndexPath *firstVisibleCellIndex = self.collectionView.indexPathsForVisibleItems.firstObject;
+    if (1 == self.collectionView.indexPathsForVisibleItems.count){
+        return firstVisibleCellIndex.row;
     }else{
-        return lastVisibleCellIndex.row;
+        return firstVisibleCellIndex.row+1;
     }
 }
     
 - (void)scrollToPageAtIndex:(NSInteger)index withAnimation:(BOOL)animated{
+    if (index >= self.dataSource.gallery.pages.count){
+        //out of boundary
+        [self.autoScrollTimer invalidate];
+        self.autoScrollSwitch.on = NO;
+        index = MAX(0,self.dataSource.gallery.pages.count-1);
+    }
+    
     NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
     [self.collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:UICollectionViewScrollPositionTop animated:animated];
 }
