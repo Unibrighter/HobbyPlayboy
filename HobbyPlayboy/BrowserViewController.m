@@ -101,7 +101,7 @@
     if (!self.collectionView.indexPathsForVisibleItems || 0 == self.collectionView.indexPathsForVisibleItems.count){
         return;
     }
-    [self updateLabelTextAndSliderValue];
+    [self updateLabelTextAndSliderValueIfNeeded];
 }
 
 #pragma mark - Helper Functions
@@ -117,12 +117,19 @@
     [self scrollToPageAtIndex:self.currentPageIndex+1 withAnimation:YES];
 }
     
-- (void)updateLabelTextAndSliderValue{
-    //update UI
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.currentPageIndex+1, self.gallery.pageCount];
+- (void)updateLabelTextAndSliderValueIfNeeded{
+    //only update slider value when auto-scroll is enabled
+    //or the collection view is scrolling
+    BOOL isScrolling = (self.collectionView.isDragging || self.collectionView.isDecelerating);
+    if (self.autoScrollTimer.isValid || isScrolling ){
         self.slider.value = self.currentPageIndex+1;
-    });
+    }else{
+        //the user is dragging the slider, no need to update the value.
+        NSLog(@"Slider Value: %f", self.slider.value);
+    }
+    
+    //update UI
+    self.pageLabel.text = [NSString stringWithFormat:@"%ld/%ld", (NSInteger)self.slider.value, self.gallery.pageCount];
 }
     
 - (NSInteger)currentPageIndex{
@@ -136,8 +143,15 @@
         return MAX(self.dataSource.gallery.pages.count-1, 0);
     }
     
+    //because of dequeuing for reuse,
+    //self.collectionView.indexPathsForVisibleItems is
+    //not always listed in order of row ascending.
+    //so we need to sort it by ourselves.
+    NSArray *indexPathsForVisibleItemsSorted = [self.collectionView.indexPathsForVisibleItems sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"row" ascending:YES]]];
+    
     //normal situation: the second visible one
-    NSIndexPath *firstVisibleCellIndex = self.collectionView.indexPathsForVisibleItems.firstObject;
+    NSIndexPath *firstVisibleCellIndex = indexPathsForVisibleItemsSorted.firstObject;
+    
     if (1 == self.collectionView.indexPathsForVisibleItems.count){
         return firstVisibleCellIndex.row;
     }else{
