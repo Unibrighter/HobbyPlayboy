@@ -34,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet UIView *popoverIndicatorView;
 @property (weak, nonatomic) IBOutlet UILabel *pageLabel;
 
+//popover
+@property (weak, nonatomic) IBOutlet UILabel *popoverLabel;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 @end

@@ -13,7 +13,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #define ANIMATION_DURATION 0.3
-#define BACKGROUND_COLOR_ALPHA 0.6
+#define BACKGROUND_COLOR_ALPHA 0.85
 
 #import "NSObject+Utils.h"
 #import "MainTabBarController.h"

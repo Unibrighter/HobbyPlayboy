@@ -105,10 +105,20 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-vR-pF6">
                                         <rect key="frame" x="67" y="-144" width="240" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzP-18-AQj">
+                                                <rect key="frame" x="56.5" y="34" width="126" height="60"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="Dkl-Xr-ynM"/>
+                                            <constraint firstItem="BzP-18-AQj" firstAttribute="centerY" secondItem="Dja-vR-pF6" secondAttribute="centerY" id="OfD-A2-z9I"/>
                                             <constraint firstAttribute="height" constant="128" id="TYp-qt-5ib"/>
+                                            <constraint firstItem="BzP-18-AQj" firstAttribute="centerX" secondItem="Dja-vR-pF6" secondAttribute="centerX" id="efT-fa-Oa2"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEd-uY-GAS">
@@ -120,6 +130,7 @@
                                                     <action selector="onSliderTouchUpInside:" destination="DM4-y8-aES" eventType="touchUpInside" id="QGB-Ya-epX"/>
                                                     <action selector="onSliderTouchUpOutside:" destination="DM4-y8-aES" eventType="touchUpOutside" id="QIJ-Yj-KMU"/>
                                                     <action selector="onSliderTouchedDown:" destination="DM4-y8-aES" eventType="touchDown" id="wPs-Dj-chb"/>
+                                                    <action selector="onSliderValueChanged:" destination="DM4-y8-aES" eventType="valueChanged" id="K1k-PX-Ie2"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcz-22-f0D">
@@ -178,6 +189,7 @@
                         <outlet property="headerView" destination="hZx-of-K9c" id="TGC-Hd-Y20"/>
                         <outlet property="pageLabel" destination="Lcz-22-f0D" id="SoL-uU-KXp"/>
                         <outlet property="popoverIndicatorView" destination="Dja-vR-pF6" id="W8b-dj-Za8"/>
+                        <outlet property="popoverLabel" destination="BzP-18-AQj" id="RBS-cE-PwS"/>
                         <outlet property="slider" destination="Fuf-pV-ZCJ" id="det-wN-7yd"/>
                         <outlet property="titleLabel" destination="CLl-Ad-tno" id="ZU4-mS-LD3"/>
                     </connections>

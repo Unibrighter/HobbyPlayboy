@@ -41,8 +41,8 @@
     //footer view
     self.footerView.backgroundColor = [UIColor clearColor];
     self.popoverIndicatorView.hidden = YES;
-    //TODO: use macro to controll the universal setting here
-    self.popoverIndicatorView.alpha = 0.6;
+    
+    self.popoverIndicatorView.alpha = BACKGROUND_COLOR_ALPHA;
     self.popoverIndicatorView.layer.cornerRadius = 4.0;
     
     self.slider.maximumValue = self.gallery.pageCount;
@@ -81,6 +81,17 @@
 - (IBAction)onSliderTouchedDown:(id)sender {
     self.popoverIndicatorView.hidden = NO;
 }
+
+- (IBAction)onSliderValueChanged:(id)sender {
+    NSDictionary *strokeTextAttributes = @{
+                                           NSStrokeColorAttributeName:UIColor.blackColor,
+                                           NSForegroundColorAttributeName:UIColor.whiteColor,
+                                           NSStrokeWidthAttributeName: @-2.0
+                                           
+                                           };
+    self.popoverLabel.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld/%ld", (NSInteger)self.slider.value, self.gallery.pageCount] attributes:strokeTextAttributes];
+}
+
     
 - (IBAction)onSliderTouchUpInside:(id)sender {
     self.popoverIndicatorView.hidden = YES;
