@@ -9,14 +9,6 @@
 #import "Gallery.h"
 #import <Realm/Realm.h>
 
-//@property (assign, nonatomic) NSInteger galleryId;
-//@property (strong, nonatomic) NSString *title;
-//@property (strong, nonatomic) NSString *referenceURLStr;
-//@property (strong, nonatomic) NSString *thumbnailURLStr;
-//@property (strong, nonatomic) RLMArray <RLMString> *pages;
-//@property (strong, nonatomic) NSString *rawTitle;
-//@property (assign, nonatomic) NSInteger pageCount;
-
 @implementation Gallery
 
 #pragma mark - Realm
@@ -28,7 +20,7 @@
     return @[@"galleryId", @"referenceURLStr", @"rawTitle"];
 }
 
-#pragma mark - Helper Functions
+#pragma mark - Help(nonatomic) er Functions
 
 - (void)setRawTitle:(NSString *)rawTitle{
     _rawTitle = rawTitle;

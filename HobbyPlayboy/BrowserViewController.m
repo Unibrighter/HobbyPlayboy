@@ -34,7 +34,6 @@
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.text = self.gallery.rawTitle;
     
-    //TODO: use NSUserPreference to store the time interval option
     self.autoScrollSwitch.on = self.autoScrollTimer.valid;
     self.headerView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:BACKGROUND_COLOR_ALPHA];
 
@@ -150,7 +149,6 @@
     
 - (void)setupAutoScrollTimerWithTimeInterval:(NSTimeInterval)timeInverval{
     if (!self.autoScrollTimer || !self.autoScrollTimer.valid){
-        //TODO: use NSUserPreference to store the time interval option
         self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:timeInverval target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
     }
 }

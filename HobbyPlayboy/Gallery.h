@@ -11,13 +11,13 @@
 
 @interface Gallery : RLMObject
 
-@property NSInteger galleryId;
-@property NSString *title;
-@property NSString *referenceURLStr;
-@property NSString *thumbnailURLStr;
+@property (assign, nonatomic) NSInteger galleryId;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *referenceURLStr;
+@property (strong, nonatomic) NSString *thumbnailURLStr;
 
-@property RLMArray <RLMString> *pages;
-@property NSString *rawTitle;
-@property NSInteger pageCount;
+@property (strong, nonatomic) RLMArray <RLMString> *pages;
+@property (strong, nonatomic) NSString *rawTitle;
+@property (assign, nonatomic) NSInteger pageCount;
 
 @end

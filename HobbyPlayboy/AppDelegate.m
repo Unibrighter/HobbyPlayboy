@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 #if DEBUG_LEVEL != DEBUG_LEVEL_NONE
-    NSLog([[RLMRealmConfiguration defaultConfiguration].fileURL absoluteString]);
+    NSLog([RLMRealmConfiguration defaultConfiguration].fileURL.absoluteString);
 #endif
     
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
