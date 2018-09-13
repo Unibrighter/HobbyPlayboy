@@ -23,4 +23,9 @@
 /* Full debug information */
 #endif
 
+//Gallery Browsing Related
+#define BROWSING_AUTO_SCROLL_SPEED_FAST 3.0
+#define BROWSING_AUTO_SCROLL_SPEED_MEDIUM 5.0
+#define BROWSING_AUTO_SCROLL_SPEED_SLOW 8.0
+
 #endif /* Config_h */

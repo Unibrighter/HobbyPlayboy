@@ -72,12 +72,43 @@
 
 - (IBAction)autoScrollSwitchValueChanged:(id)sender {
     if (self.autoScrollSwitch.on){
-        [self setupAutoScrollTimer];
+        
+        //let the user decide the speed that auto-scroll will be at
+        UIAlertController *optionAlertController = [UIAlertController alertControllerWithTitle:@"Auto Scroll" message:@"Please Choose Scroll Speed..." preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        NSString *hintStr = @"%@ - %@s";
+        NSString *hintStrFast = [NSString stringWithFormat:hintStr, @"Fast", [@(BROWSING_AUTO_SCROLL_SPEED_FAST) stringValue]];
+        NSString *hintStrMedium = [NSString stringWithFormat:hintStr, @"Medium", [@(BROWSING_AUTO_SCROLL_SPEED_MEDIUM) stringValue]];
+        NSString *hintStrSlow = [NSString stringWithFormat:hintStr, @"Slow", [@(BROWSING_AUTO_SCROLL_SPEED_SLOW) stringValue]];
+        
+        UIAlertAction *fastOption = [UIAlertAction actionWithTitle:hintStrFast style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self setupAutoScrollTimerWithTimeInterval:BROWSING_AUTO_SCROLL_SPEED_FAST];
+        }];
+        UIAlertAction *mediumOption = [UIAlertAction actionWithTitle:hintStrMedium style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self setupAutoScrollTimerWithTimeInterval:BROWSING_AUTO_SCROLL_SPEED_MEDIUM];
+        }];
+        UIAlertAction *slowOption = [UIAlertAction actionWithTitle:hintStrSlow style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self setupAutoScrollTimerWithTimeInterval:BROWSING_AUTO_SCROLL_SPEED_SLOW];
+        }];
+        UIAlertAction *cancelOption = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            self.autoScrollSwitch.on = NO;
+        }];
+        
+        [optionAlertController addAction:fastOption];
+        [optionAlertController addAction:mediumOption];
+        [optionAlertController addAction:slowOption];
+        [optionAlertController addAction:cancelOption];
+        
+        optionAlertController.popoverPresentationController.sourceView = self.autoScrollSwitch;
+        optionAlertController.popoverPresentationController.sourceRect = self.autoScrollSwitch.frame;
+        
+        [self presentViewController:optionAlertController animated:YES completion:nil];
+        
     }else{
         [self.autoScrollTimer invalidate];
     }
 }
-    
+
 - (IBAction)onSliderTouchedDown:(id)sender {
     self.popoverIndicatorView.hidden = NO;
 }
@@ -117,10 +148,10 @@
 
 #pragma mark - Helper Functions
     
-- (void)setupAutoScrollTimer{
+- (void)setupAutoScrollTimerWithTimeInterval:(NSTimeInterval)timeInverval{
     if (!self.autoScrollTimer || !self.autoScrollTimer.valid){
         //TODO: use NSUserPreference to store the time interval option
-        self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+        self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:timeInverval target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
     }
 }
 
