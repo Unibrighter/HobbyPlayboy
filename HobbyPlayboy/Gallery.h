@@ -20,4 +20,8 @@
 @property (strong, nonatomic) NSString *rawTitle;
 @property (assign, nonatomic) NSInteger pageCount;
 
+@property (assign, nonatomic) BOOL favorite;
+
+- (void)addOrUpdateGalleryWithBlock:(void (^)(Gallery *weakSelf))block;
+
 @end

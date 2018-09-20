@@ -20,7 +20,18 @@
     return @[@"galleryId", @"referenceURLStr", @"rawTitle"];
 }
 
-#pragma mark - Help(nonatomic) er Functions
+#pragma mark - Helper Functions
+- (void)addOrUpdateGalleryWithBlock:(void (^)(Gallery *weakSelf))block{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    __weak typeof (self) weakSelf  = self;
+    if (block) {
+        block(weakSelf);
+    }
+    
+    [realm addOrUpdateObject:self];
+    [realm commitWriteTransaction];
+}
 
 - (void)setRawTitle:(NSString *)rawTitle{
     _rawTitle = rawTitle;
@@ -59,8 +70,6 @@
         self.pages = [self getPagesWithGalleryId:self.galleryId pageCount:self.pageCount];
     }
 }
-
-#pragma mark - Helper Fuctions
 
 - (NSArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
     

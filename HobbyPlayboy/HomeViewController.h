@@ -11,12 +11,14 @@
 @class HomeTableViewDataSource;
 @class Gallery;
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController <UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) HomeTableViewDataSource *dataSource;
 @property (strong, nonatomic) UISearchController *searchViewController;
+
+@property (strong, nonatomic) UISearchBar* searchBar;
 
 //responder chain method
 - (void)selectGallery:(Gallery *)gallery;

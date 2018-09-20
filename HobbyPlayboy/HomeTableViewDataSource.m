@@ -33,17 +33,18 @@
 
 #pragma mark - Collection View Delegate
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.galleries.count;
+    return self.filteredGalleries.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HomeTableViewCell className]];
 
-    Gallery *gallery = self.galleries[indexPath.row];
+    Gallery *gallery = self.filteredGalleries[indexPath.row];
     cell.titleLabel.text = gallery.title;
+    cell.galleryId = @(gallery.galleryId);
     cell.pageCountLabel.text = [NSString stringWithFormat:@"%@p", [@(gallery.pageCount) stringValue]];
+    cell.favorite = gallery.favorite;
     
     [cell.thumbnailImageView sd_setShowActivityIndicatorView:YES];
     [cell.thumbnailImageView sd_setIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -62,8 +63,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    Gallery *gallery = self.galleries[indexPath.row];
+    Gallery *gallery = self.filteredGalleries[indexPath.row];
     [tableView performSelectorViaResponderChain:@selector(selectGallery:) withObject:gallery];
+}
+
+- (NSArray<Gallery *> *)filteredGalleries{
+    if (self.predicate){
+        _filteredGalleries = [self.galleries objectsWithPredicate:self.predicate];
+    }else{
+        _filteredGalleries = self.galleries;
+    }
+    return _filteredGalleries;
 }
 
 @end

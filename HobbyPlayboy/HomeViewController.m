@@ -30,10 +30,10 @@
         // Fallback on earlier versions
 //        self.navigationItem.titleView = self.searchViewController.searchBar;
 //    }
-    self.navigationItem.titleView = [[UISearchBar alloc] init];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:nil];
     
+    //table view and delegate configuration
     self.dataSource = [[HomeTableViewDataSource alloc] init];
     [self.dataSource registerNibForTableView:self.tableView];
     self.tableView.delegate = self.dataSource;
@@ -47,7 +47,22 @@
     
     [self setupRealmNotifications];
     
+    //search bar configuration
+    self.searchBar = [[UISearchBar alloc] init];
+    self.navigationItem.titleView = self.searchBar;
+    self.searchBar.delegate = self;
 }
+
+#pragma mark - SearchBar Delegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if (searchText && searchText.length != 0){
+        self.dataSource.predicate = [NSPredicate predicateWithFormat:@"rawTitle CONTAINS %@", searchText];
+    }else{
+        self.dataSource.predicate = nil;
+    }
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Synchronization
 
@@ -61,10 +76,6 @@
             [realm transactionWithBlock:^{
                 [realm addOrUpdateObjects:galleries];
             }];
-            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.tableView reloadData];
-//            });
         }
     }];
 }
@@ -82,9 +93,19 @@
     [((AppDelegate *)[UIApplication sharedApplication].delegate).mainTabBarController presentViewController:browserViewController animated:YES completion:nil];
 }
 
-- (void)downloadGalleryWithGalleryId:(NSString *)galleryId{
+- (void)downloadGalleryWithGalleryId:(NSNumber *)galleryId{
     //TODO: implement me
-    NSLog(@"download gallery with id: %@", galleryId);
+    NSLog(@"download gallery with id: %@", galleryId.stringValue);
+}
+
+- (void)toggleFavoriteGalleryWithGalleryId:(NSNumber *)galleryId{
+    RLMResults<Gallery *> *results = [Gallery objectsWhere:@"galleryId = %@",galleryId];
+    if (results.count){
+        Gallery *gallery = results.firstObject;
+        [gallery addOrUpdateGalleryWithBlock:^(Gallery *weakSelf) {
+            weakSelf.favorite = !weakSelf.favorite;
+        }];
+    }
 }
 
 #pragma mark - Helper Functions

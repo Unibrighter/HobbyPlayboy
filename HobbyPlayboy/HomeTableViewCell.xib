@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,6 +64,17 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAz-Lh-OMy">
+                                <rect key="frame" x="59" y="59" width="29" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pAz-Lh-OMy" secondAttribute="height" multiplier="1:1" id="Ol8-K1-fiX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="★"/>
+                                <connections>
+                                    <action selector="favoriteButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="60w-qc-EBS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="qhe-96-hW1" firstAttribute="top" secondItem="J6K-1a-YYu" secondAttribute="top" id="0gp-vJ-zMw"/>
@@ -74,10 +86,13 @@
                             <constraint firstItem="gGw-8t-Xa5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oPu-nh-9LK" secondAttribute="trailing" constant="16" id="Ge4-Ve-XU3"/>
                             <constraint firstItem="oPu-nh-9LK" firstAttribute="leading" secondItem="3an-Rw-c1h" secondAttribute="trailing" constant="16" id="Nfm-vY-fX8"/>
                             <constraint firstAttribute="trailing" secondItem="qhe-96-hW1" secondAttribute="trailing" id="Tq9-SE-4cG"/>
+                            <constraint firstItem="pAz-Lh-OMy" firstAttribute="width" secondItem="3an-Rw-c1h" secondAttribute="width" multiplier="0.33" id="VqR-vw-KH9"/>
                             <constraint firstItem="gGw-8t-Xa5" firstAttribute="centerY" secondItem="oPu-nh-9LK" secondAttribute="centerY" id="YwY-IG-nPz"/>
+                            <constraint firstItem="pAz-Lh-OMy" firstAttribute="trailing" secondItem="3an-Rw-c1h" secondAttribute="trailing" id="Zg1-LP-N8j"/>
                             <constraint firstItem="oPu-nh-9LK" firstAttribute="bottom" secondItem="3an-Rw-c1h" secondAttribute="bottom" id="dL1-zb-R2B"/>
                             <constraint firstItem="qhe-96-hW1" firstAttribute="leading" secondItem="3an-Rw-c1h" secondAttribute="trailing" constant="16" id="ez8-fa-pxI"/>
                             <constraint firstItem="gGw-8t-Xa5" firstAttribute="top" secondItem="oPu-nh-9LK" secondAttribute="top" id="qQc-v4-wW1"/>
+                            <constraint firstItem="pAz-Lh-OMy" firstAttribute="bottom" secondItem="3an-Rw-c1h" secondAttribute="bottom" id="reE-xD-UbO"/>
                             <constraint firstItem="3an-Rw-c1h" firstAttribute="top" secondItem="J6K-1a-YYu" secondAttribute="top" id="se5-ix-feA"/>
                             <constraint firstAttribute="height" priority="999" constant="88" id="znj-tt-lWj"/>
                         </constraints>
@@ -193,6 +208,7 @@
                 <outlet property="detailViewHeightConstraint" destination="5gJ-jJ-Y55" id="oaR-o7-OqS"/>
                 <outlet property="detailViewToggleButton" destination="JLN-KR-1Mx" id="P2I-Ox-QbJ"/>
                 <outlet property="downloadButton" destination="U7c-Fu-C0x" id="IXy-7y-gsg"/>
+                <outlet property="favoriteButton" destination="pAz-Lh-OMy" id="Z3s-bu-3v1"/>
                 <outlet property="languageContentLabel" destination="aFe-bL-1Cd" id="pJj-PN-fMV"/>
                 <outlet property="languageLabel" destination="5Z4-CM-0yQ" id="e3L-9r-xDn"/>
                 <outlet property="pageCountLabel" destination="oPu-nh-9LK" id="ys4-Qs-Jnp"/>

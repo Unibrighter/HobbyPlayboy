@@ -14,10 +14,12 @@
 
 @interface HomeTableViewDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-//@property NSMutableArray <Gallery *>* galleries;
 @property (strong, nonatomic) RLMRealm *realm;
 @property (strong, nonatomic) RLMResults *galleries;
 @property (strong, nonatomic) NSMutableSet *detailViewExpandedIndexes;
+
+@property (strong, nonatomic) NSPredicate *predicate;
+@property (strong, nonatomic) NSArray<Gallery *> *filteredGalleries;
 
 - (void)registerNibForTableView:(UITableView *)tableView;
 @end

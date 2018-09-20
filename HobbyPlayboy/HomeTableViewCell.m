@@ -13,7 +13,12 @@
 #define CELL_MARGIN_OFFSET 16
 #define THUMBNAIL_IMAGE_VIEW_WEIDTH 88
 
+#define FAVORITE_ICON_STRING_FILLED @"★"
+#define FAVORITE_ICON_STRING_UNFILLED @"☆"
+
 @implementation HomeTableViewCell
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -30,6 +35,9 @@
     self.categoryContentLabel.numberOfLines = 0;
     
     self.detailContainerView.hidden = YES;
+    
+    //initialize the favorite button looking
+    self.favorite = NO;
 }
 
 - (void)prepareForReuse{
@@ -44,6 +52,12 @@
 }
 
 #pragma mark - IBAction
+- (IBAction)favoriteButtonTapped:(id)sender {
+    self.favorite = !self.favorite;
+    
+    [self performSelectorViaResponderChain:@selector(toggleFavoriteGalleryWithGalleryId:) withObject:self.galleryId];
+}
+
 - (IBAction)downloadButtonTapped:(id)sender {
     [self performSelectorViaResponderChain:@selector(downloadGalleryWithGalleryId:) withObject:self.galleryId];
 }
@@ -94,6 +108,25 @@
 - (CGRect)getDesirableFrameForText:(NSString *)text font:(UIFont *)font boundingBox:(CGSize)maximumSize{
     CGRect frame = [text boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
     return frame;
+}
+
+- (void)setFavorite:(BOOL)favorite{
+    NSString *presentString;
+    UIColor *color;
+    if (favorite){
+        presentString = FAVORITE_ICON_STRING_FILLED;
+        color = UIColor.yellowColor;
+    }else{
+        presentString = FAVORITE_ICON_STRING_UNFILLED;
+        color = UIColor.whiteColor;
+    }
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:presentString attributes:@{NSStrokeColorAttributeName:color, NSForegroundColorAttributeName:color}];
+    [self.favoriteButton setAttributedTitle:attributedString forState:UIControlStateNormal];
+}
+
+- (BOOL)favorite{
+    BOOL favorite = [self.favoriteButton.titleLabel.text isEqualToString:FAVORITE_ICON_STRING_FILLED];
+    return favorite;
 }
 
 @end

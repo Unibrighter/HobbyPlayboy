@@ -10,12 +10,15 @@
 
 @interface HomeTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) NSString *galleryId;
+@property (strong, nonatomic) NSNumber *galleryId;
 
+//caption
 @property (weak, nonatomic) IBOutlet UIView *captionContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pageCountLabel;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (assign, nonatomic) BOOL favorite;
 
 @property (weak, nonatomic) IBOutlet UIButton *detailViewToggleButton;
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
