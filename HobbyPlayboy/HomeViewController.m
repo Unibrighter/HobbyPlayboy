@@ -41,10 +41,12 @@
     self.tableView.estimatedRowHeight = 120;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
+    //load gallery from the server if local data has zero record
     if (0 == self.dataSource.galleries.count){
         [self loadGalleriesFromPageNum:0];
     }
     
+    //force to update datasource if there is any the realm notification
     [self setupRealmNotifications];
     
     //search bar configuration
@@ -54,6 +56,24 @@
 }
 
 #pragma mark - SearchBar Delegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    if (!self.searchOverlayView){
+        self.searchOverlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        self.searchOverlayView.backgroundColor = UIColor.clearColor;
+        [self.searchOverlayView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endEditingSearchBarIfNeeded)]];
+    }
+    [self.view addSubview:self.searchOverlayView];
+    
+    return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+    if (self.searchOverlayView){
+        [self.searchOverlayView removeFromSuperview];
+    }
+    return YES;
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (searchText && searchText.length != 0){
         self.dataSource.predicate = [NSPredicate predicateWithFormat:@"rawTitle CONTAINS %@", searchText];
@@ -83,6 +103,7 @@
 #pragma mark - ResponderChain
 
 - (void)selectGallery:(id)object{
+    
     BrowserViewController *browserViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:[BrowserViewController className]];
     browserViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     browserViewController.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -114,6 +135,13 @@
     self.realmNotificationToken = [realm addNotificationBlock:^(RLMNotification  _Nonnull notification, RLMRealm * _Nonnull realm) {
         [self.tableView reloadData];
     }];
-    
+}
+
+- (BOOL)endEditingSearchBarIfNeeded{
+    BOOL searchBarActivate = self.searchBar.isFirstResponder;
+    if (searchBarActivate){
+        [self.searchBar resignFirstResponder];
+    }
+    return searchBarActivate;
 }
 @end

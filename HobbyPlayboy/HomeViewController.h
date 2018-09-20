@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UISearchController *searchViewController;
 
 @property (strong, nonatomic) UISearchBar* searchBar;
+@property (strong, nonatomic) UIView *searchOverlayView;
 
 //responder chain method
 - (void)selectGallery:(Gallery *)gallery;

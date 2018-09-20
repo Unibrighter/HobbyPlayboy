@@ -63,6 +63,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Gallery *gallery = self.filteredGalleries[indexPath.row];
     [tableView performSelectorViaResponderChain:@selector(selectGallery:) withObject:gallery];
 }
