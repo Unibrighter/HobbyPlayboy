@@ -3,26 +3,27 @@ PODS:
   - Realm (3.7.4):
     - Realm/Headers (= 3.7.4)
   - Realm/Headers (3.7.4)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - SDWebImage (0.0.1):
+    - SDWebImage/Core (= 0.0.1)
+  - SDWebImage/Core (0.0.1)
 
 DEPENDENCIES:
   - hpple (~> 0.2)
   - Realm
-  - SDWebImage (~> 4.0)
+  - SDWebImage (~> 0.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - hpple
     - Realm
+  https://github.com/Unibrighter/unibrighter-pods.git:
     - SDWebImage
 
 SPEC CHECKSUMS:
   hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   Realm: a469bb59e33f9926102ccaea4349822c53b9117e
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SDWebImage: 3a803d5ff2327f5854923cca64bb605b02d56f2d
 
-PODFILE CHECKSUM: 7063940e6915e7498185d61273359b32f4c37884
+PODFILE CHECKSUM: f64fdb55eb1d45ccf0a51869e16202e776c35b27
 
 COCOAPODS: 1.5.3

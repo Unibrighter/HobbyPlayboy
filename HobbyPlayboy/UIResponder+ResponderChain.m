@@ -4,6 +4,7 @@
 //
 //  Created by Kunliang Wu on 18/7/18.
 //  Copyright © 2018 Kunliang Wu. All rights reserved.
+//  See -https://groups.google.com/forum/#!msg/cocoa-unbound/azBfIy3ga3U/6ge1QAtSptYJ
 //
 
 #import "UIResponder+ResponderChain.h"
