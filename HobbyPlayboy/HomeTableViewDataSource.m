@@ -64,7 +64,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Gallery *gallery = self.filteredGalleries[indexPath.row];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [tableView performSelectorViaResponderChain:@selector(selectGallery:) withObject:gallery];
+#pragma clang diagnostic pop
 }
 
 - (NSArray<Gallery *> *)filteredGalleries{
