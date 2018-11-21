@@ -20,7 +20,6 @@
 - (instancetype)init{
     self = [super init];
     if (self){
-        self.galleries = Gallery.allObjects;
         self.detailViewExpandedIndexes = [[NSMutableSet alloc] init];
     }
     return self;
@@ -71,13 +70,12 @@
 #pragma clang diagnostic pop
 }
 
-- (NSArray<Gallery *> *)filteredGalleries{
+- (RLMResults *)filteredGalleries{
     if (self.predicate){
-        _filteredGalleries = [self.galleries objectsWithPredicate:self.predicate];
+        return [[Gallery allObjects] objectsWithPredicate:self.predicate];
     }else{
-        _filteredGalleries = self.galleries;
+        return [Gallery allObjects];
     }
-    return _filteredGalleries;
 }
 
 @end

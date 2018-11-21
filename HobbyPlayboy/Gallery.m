@@ -58,7 +58,7 @@
     }
 }
 
-- (NSArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
+- (RLMArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
     
     NSMutableArray *pages = [[NSMutableArray alloc] initWithCapacity:galleryId];
     

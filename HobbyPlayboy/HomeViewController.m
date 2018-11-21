@@ -42,7 +42,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     //load gallery from the server if local data has zero record
-    if (0 == self.dataSource.galleries.count){
+    if (0 == [Gallery allObjects].count){
         [self loadGalleriesFromPageNum:0];
     }
     
