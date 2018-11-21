@@ -20,7 +20,6 @@
 - (instancetype)init{
     self = [super init];
     if (self){
-        self.realm = [RLMRealm defaultRealm];
         self.galleries = Gallery.allObjects;
         self.detailViewExpandedIndexes = [[NSMutableSet alloc] init];
     }

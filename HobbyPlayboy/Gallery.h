@@ -22,6 +22,4 @@
 
 @property (assign, nonatomic) BOOL favorite;
 
-- (void)addOrUpdateGalleryWithBlock:(void (^)(Gallery *weakSelf))block;
-
 @end

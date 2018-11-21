@@ -123,8 +123,8 @@
     RLMResults<Gallery *> *results = [Gallery objectsWhere:@"galleryId = %@",galleryId];
     if (results.count){
         Gallery *gallery = results.firstObject;
-        [gallery addOrUpdateGalleryWithBlock:^(Gallery *weakSelf) {
-            weakSelf.favorite = !weakSelf.favorite;
+        [[RLMRealm defaultRealm] transactionWithBlock:^{
+            gallery.favorite = !gallery.favorite;
         }];
     }
 }
