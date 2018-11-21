@@ -66,7 +66,8 @@
     NSString *imageURL;
     for (int i = 1; i <= pageCount; i++) {
         NSString *pageOffset = [NSString stringWithFormat:@"%03d", i];
-        imageURL = [NSString stringWithFormat:@"http://hahost2.imgscloud.com/fileshort/%ld/%ld_%@.jpg", galleryIdAdjusted, galleryIdAdjusted, pageOffset];
+        //TODO: hahost hbhost hchost variation.. Fix this into auto-detection.
+        imageURL = [NSString stringWithFormat:@"http://hchost2.imgscloud.com/fileshort/%ld/%ld_%@.jpg", galleryIdAdjusted, galleryIdAdjusted, pageOffset];
         [pages addObject:imageURL];
     }
     return [pages copy];
