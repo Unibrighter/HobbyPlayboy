@@ -11,17 +11,15 @@
 
 @interface Gallery : RLMObject
 
-@property (assign, nonatomic) NSInteger galleryId;
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *referenceURLStr;
-@property (strong, nonatomic) NSString *thumbnailURLStr;
+@property NSInteger galleryId;
+@property NSString *title;
+@property NSString *referenceURLStr;
+@property NSString *thumbnailURLStr;
 
-@property (strong, nonatomic) RLMArray <RLMString> *pages;
-@property (strong, nonatomic) NSString *rawTitle;
-@property (assign, nonatomic) NSInteger pageCount;
+@property RLMArray <RLMString> *pages;
+@property NSString *rawTitle;
+@property NSInteger pageCount;
 
-@property (assign, nonatomic) BOOL favorite;
-
-- (void)addOrUpdateGalleryWithBlock:(void (^)(Gallery *weakSelf))block;
+@property BOOL favorite;
 
 @end

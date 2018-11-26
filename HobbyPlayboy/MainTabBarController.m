@@ -49,15 +49,15 @@
 #pragma mark - View Controllers Access
 
 - (HomeViewController *)homeViewController{
-    return self.homeNavController.viewControllers[0];
+    return self.homeNavController.viewControllers.firstObject;
 }
 
 - (FavViewController *)favViewController{
-    return self.favNavController.viewControllers[0];
+    return self.favNavController.viewControllers.firstObject;
 }
 
 - (SettingViewController *)settingViewController{
-    return self.settingNavController.viewControllers[0];
+    return self.settingNavController.viewControllers.firstObject;
 }
 
 

@@ -42,7 +42,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     //load gallery from the server if local data has zero record
-    if (0 == self.dataSource.galleries.count){
+    if (0 == [Gallery allObjects].count){
         [self loadGalleriesFromPageNum:0];
     }
     
@@ -123,8 +123,8 @@
     RLMResults<Gallery *> *results = [Gallery objectsWhere:@"galleryId = %@",galleryId];
     if (results.count){
         Gallery *gallery = results.firstObject;
-        [gallery addOrUpdateGalleryWithBlock:^(Gallery *weakSelf) {
-            weakSelf.favorite = !weakSelf.favorite;
+        [[RLMRealm defaultRealm] transactionWithBlock:^{
+            gallery.favorite = !gallery.favorite;
         }];
     }
 }

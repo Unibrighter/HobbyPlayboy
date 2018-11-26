@@ -20,8 +20,6 @@
 - (instancetype)init{
     self = [super init];
     if (self){
-        self.realm = [RLMRealm defaultRealm];
-        self.galleries = Gallery.allObjects;
         self.detailViewExpandedIndexes = [[NSMutableSet alloc] init];
     }
     return self;
@@ -65,16 +63,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Gallery *gallery = self.filteredGalleries[indexPath.row];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [tableView performSelectorViaResponderChain:@selector(selectGallery:) withObject:gallery];
+#pragma clang diagnostic pop
 }
 
-- (NSArray<Gallery *> *)filteredGalleries{
+- (RLMResults *)filteredGalleries{
     if (self.predicate){
-        _filteredGalleries = [self.galleries objectsWithPredicate:self.predicate];
+        return [[Gallery allObjects] objectsWithPredicate:self.predicate];
     }else{
-        _filteredGalleries = self.galleries;
+        return [Gallery allObjects];
     }
-    return _filteredGalleries;
 }
 
 @end

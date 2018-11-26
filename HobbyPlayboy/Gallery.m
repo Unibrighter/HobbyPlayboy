@@ -20,19 +20,6 @@
     return @[@"galleryId", @"referenceURLStr", @"rawTitle"];
 }
 
-#pragma mark - Helper Functions
-- (void)addOrUpdateGalleryWithBlock:(void (^)(Gallery *weakSelf))block{
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    __weak typeof (self) weakSelf  = self;
-    if (block) {
-        block(weakSelf);
-    }
-    
-    [realm addOrUpdateObject:self];
-    [realm commitWriteTransaction];
-}
-
 - (void)setRawTitle:(NSString *)rawTitle{
     _rawTitle = rawTitle;
     if (_rawTitle && _rawTitle.length != 0){
@@ -71,7 +58,7 @@
     }
 }
 
-- (NSArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
+- (RLMArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
     
     NSMutableArray *pages = [[NSMutableArray alloc] initWithCapacity:galleryId];
     
@@ -79,7 +66,8 @@
     NSString *imageURL;
     for (int i = 1; i <= pageCount; i++) {
         NSString *pageOffset = [NSString stringWithFormat:@"%03d", i];
-        imageURL = [NSString stringWithFormat:@"http://hahost2.imgscloud.com/fileshort/%ld/%ld_%@.jpg", galleryIdAdjusted, galleryIdAdjusted, pageOffset];
+        //TODO: hahost hbhost hchost variation.. Fix this into auto-detection.
+        imageURL = [NSString stringWithFormat:@"http://hchost2.imgscloud.com/fileshort/%ld/%ld_%@.jpg", galleryIdAdjusted, galleryIdAdjusted, pageOffset];
         [pages addObject:imageURL];
     }
     return [pages copy];

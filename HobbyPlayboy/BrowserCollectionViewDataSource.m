@@ -37,9 +37,14 @@
     [cell.imageView sd_setShowActivityIndicatorView:YES];
     [cell.imageView sd_setIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:URLStr] placeholderImage:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        CGFloat imageRatio = image.size.width/image.size.height;
-        cell.imageViewWidthConstraint.constant = CGRectGetWidth(collectionView.frame);
-        cell.imageViewHeightConstraint.constant = cell.imageViewWidthConstraint.constant/imageRatio;
+        if (image){
+            CGFloat imageRatio = image.size.width/image.size.height;
+            cell.imageViewWidthConstraint.constant = CGRectGetWidth(collectionView.frame);
+            cell.imageViewHeightConstraint.constant = cell.imageViewWidthConstraint.constant/imageRatio;
+        }else{
+            cell.imageViewWidthConstraint.constant = 0;
+            cell.imageViewHeightConstraint.constant = 0;
+        }
     }];
     return cell;
 }

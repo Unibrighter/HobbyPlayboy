@@ -55,11 +55,18 @@
 - (IBAction)favoriteButtonTapped:(id)sender {
     self.favorite = !self.favorite;
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [self performSelectorViaResponderChain:@selector(toggleFavoriteGalleryWithGalleryId:) withObject:self.galleryId];
+#pragma clang diagnostic pop
 }
 
 - (IBAction)downloadButtonTapped:(id)sender {
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     [self performSelectorViaResponderChain:@selector(downloadGalleryWithGalleryId:) withObject:self.galleryId];
+#pragma clang diagnostic pop
 }
 
 - (IBAction)toggleDetailViewButtonTapped:(id)sender {
