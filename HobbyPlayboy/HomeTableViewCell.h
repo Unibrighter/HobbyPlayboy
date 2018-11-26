@@ -27,5 +27,6 @@
 
 //detail view height control
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentStackViewBottomMarginConstraint;
 
 @end
