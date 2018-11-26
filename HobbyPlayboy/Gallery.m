@@ -26,7 +26,7 @@
         //refer the name and page count from the rawTitle if possible
         NSAssert((self.rawTitle && self.rawTitle.length != 0), @"Can't generate properties from invalid rawTitle.");
         
-        NSString *matchingPattern = @"(\\[)(\\d+)(p])(.*)";//match index (1)(2)(3)(4)
+        NSString *matchingPattern = @"(\\[)(\\d+)(p])(.*)";
         
         NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:matchingPattern options:0 error:nil];
         NSTextCheckingResult *match = [regularExpression firstMatchInString:self.rawTitle options:0 range:NSMakeRange(0, self.rawTitle.length)];
@@ -53,15 +53,9 @@
         NSInteger galleryIdAdjusted = 10000+galleryId;
         NSString *thumbnailURLStr = [NSString stringWithFormat:@"http://fchost1.imgscloud.com/s/hcshort/hc%ld.jpg", galleryIdAdjusted];
         self.thumbnailURLStr = thumbnailURLStr;
+        
+        self.pages = [self getPagesWithGalleryId:self.galleryId pageCount:self.pageCount];
     }
-}
-
-- (RLMArray<RLMString> *)pages{
-    if (!_pages){
-        //lazy load pages, only generated when it's first loaded
-        _pages = [self getPagesWithGalleryId:self.galleryId pageCount:self.pageCount];
-    }
-    return _pages;
 }
 
 - (RLMArray<RLMString> *)getPagesWithGalleryId:(NSInteger)galleryId pageCount:(NSInteger)pageCount{
@@ -78,5 +72,6 @@
     }
     return [pages copy];
 }
+
 
 @end
