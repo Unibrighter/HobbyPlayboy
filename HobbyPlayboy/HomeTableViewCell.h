@@ -29,4 +29,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentStackViewBottomMarginConstraint;
 
+@property (assign, nonatomic, readonly) BOOL isFolded;
+
 @end

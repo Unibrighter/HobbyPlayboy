@@ -20,7 +20,7 @@
 - (instancetype)init{
     self = [super init];
     if (self){
-        self.detailViewExpandedIndexes = [[NSMutableSet alloc] init];
+        self.detailViewUnfoldedIndexes = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -50,8 +50,10 @@
                  placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     //check if need to persist the expansion status of some cells if needed
-    if ([self.detailViewExpandedIndexes containsObject:indexPath]){
+    if ([self.detailViewUnfoldedIndexes containsObject:indexPath]){
         cell.detailTextView.hidden = NO;
+    }else{
+        cell.detailTextView.hidden = YES;
     }
     
     return cell;

@@ -14,7 +14,7 @@
 
 @interface HomeTableViewDataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSMutableSet *detailViewExpandedIndexes;
+@property (strong, nonatomic) NSMutableSet *detailViewUnfoldedIndexes;
 
 @property (strong, nonatomic) NSPredicate *predicate;
 

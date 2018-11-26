@@ -57,20 +57,19 @@
 
 - (IBAction)toggleDetailViewButtonTapped:(id)sender {
     UITableView *tableView = self.tableView;
-    
+
+    HomeTableViewDataSource *dataSource = (HomeTableViewDataSource *)tableView.dataSource;
+    NSIndexPath *indexPath = [tableView indexPathForCell:self];
+    if (self.isFolded){
+        [dataSource.detailViewUnfoldedIndexes addObject:indexPath];
+    }else{
+        [dataSource.detailViewUnfoldedIndexes removeObject:indexPath];
+    }
     [tableView beginUpdates];
-    self.detailTextView.hidden = !self.detailTextView.hidden;
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
     
     [self.detailViewToggleButton setTitle:self.detailTextView.hidden?@"More":@"Collapse" forState:UIControlStateNormal];
-    
-    //inform the data source that this detail view has been expanded
-    //save it to the list for future reuse
-    if (!self.detailTextView.hidden){
-        HomeTableViewDataSource *dataSource = (HomeTableViewDataSource *)tableView.dataSource;
-        NSIndexPath *expandedIndex = [tableView indexPathForCell:self];
-        [dataSource.detailViewExpandedIndexes addObject:expandedIndex];
-    }
 }
 
 #pragma mark - Helper Functions
@@ -86,6 +85,10 @@
 - (CGRect)getDesirableFrameForText:(NSString *)text font:(UIFont *)font boundingBox:(CGSize)maximumSize{
     CGRect frame = [text boundingRectWithSize:maximumSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
     return frame;
+}
+
+- (BOOL)isFolded{
+    return self.detailTextView.hidden;
 }
 
 @end
